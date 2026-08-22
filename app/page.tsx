@@ -1,60 +1,46 @@
-import { ArrowRight, CheckCircle, Globe, Sparkle } from "@phosphor-icons/react/dist/ssr";
+import Link from "next/link";
+import { ArrowDown, ArrowRight, Buildings, CalendarCheck, ChartLineUp, CheckCircle, ChatsCircle, CirclesFour, Factory, Globe, GraduationCap, Headset, Heartbeat, MapPin, Microphone, PhoneCall, Pulse, Sparkle, Storefront, UsersThree, WhatsappLogo } from "@phosphor-icons/react/dist/ssr";
+import { WorkflowLab } from "@/components/workflow-lab";
+import { CTA, Footer, Header } from "@/components/site-shell";
 
-const brand = "{{BRAND_NAME}}";
+const agents=[
+  {icon:ChartLineUp,title:"AI Sales Agent",copy:"Captures leads, qualifies intent, follows up and books the right conversation.",href:"/ai-employees/sales-agent",tone:"sage"},
+  {icon:PhoneCall,title:"AI Receptionist",copy:"Answers enquiries, schedules appointments and hands over with full context.",href:"/ai-employees/receptionist",tone:"blue"},
+  {icon:GraduationCap,title:"AI Admission Officer",copy:"Guides students, captures details and turns interest into campus visits.",href:"/ai-employees/admission-officer",tone:"sand"},
+  {icon:Headset,title:"AI Support Agent",copy:"Resolves repeat questions and protects your team’s time for complex work.",href:"/ai-employees/support-agent",tone:"grey"},
+];
+const industries=[
+  {icon:GraduationCap,title:"Education",copy:"Admissions and student enquiries",href:"/industries/education"},
+  {icon:Heartbeat,title:"Healthcare",copy:"Access and administration",href:"/industries/healthcare"},
+  {icon:Buildings,title:"Real Estate",copy:"Qualification and site visits",href:"/industries/real-estate"},
+  {icon:Factory,title:"Manufacturing",copy:"Enquiries and operations",href:"/industries/manufacturing"},
+  {icon:Storefront,title:"Service Businesses",copy:"Booking and follow-up",href:"/industries/service-businesses"},
+];
 
-export default function Home() {
-  return (
-    <main>
-      <header className="site-header">
-        <div className="container nav-inner">
-          <a className="wordmark" href="#top" aria-label={`${brand} home`}>
-            <span className="brand-glyph">A</span>{brand}
-          </a>
-          <nav aria-label="Primary navigation">
-            <a href="#solutions">Solutions</a>
-            <a href="#employees">AI Employees</a>
-            <a href="#industries">Industries</a>
-            <a href="#about">About</a>
-          </nav>
-          <a className="button button-small" href="/contact">Show Us Your Workflow <ArrowRight /></a>
-        </div>
-      </header>
+export default function Home(){return <><Header/><main>
+  <section className="home-hero" id="top"><div className="hero-wash wash-green"/><div className="hero-wash wash-blue"/><div className="container home-hero-grid">
+    <div className="home-hero-copy"><p className="eyebrow"><span/> AI AUTOMATION · HUBBALLI, INDIA</p><h1>AI that works<br/><em>with your business.</em></h1><p className="hero-lede">AI employees that answer, qualify, follow up, book and automate the repetitive work between your customers and your team.</p><div className="hero-actions"><a className="lab-cta" href="#workflow-lab"><span><Sparkle weight="fill"/></span><b>Watch a workflow happen</b><small>Choose a role · see it work</small><ArrowDown/></a><Link className="text-link" href="/contact">Show us your workflow <ArrowRight/></Link></div><div className="language-row"><Globe/> Designed for <b>Kannada</b><span>·</span><b>English</b><span>·</span><b>Hindi</b><span className="human-note">Human handoff included</span></div></div>
+    <WorkflowLab/>
+  </div></section>
 
-      <section className="hero" id="top">
-        <div className="hero-orb" aria-hidden="true" />
-        <div className="container hero-grid">
-          <div className="hero-copy">
-            <p className="eyebrow"><span /> AI AUTOMATION · HUBBALLI, INDIA</p>
-            <h1>AI that works<br />for your business.</h1>
-            <p className="hero-lede">Build AI employees that answer, qualify, follow up, book and automate repetitive work — 24/7.</p>
-            <div className="hero-actions">
-              <a className="button" href="#demo"><Sparkle weight="fill" /> See AI in Action</a>
-              <a className="text-link" href="/contact">Show Us Your Workflow <ArrowRight /></a>
-            </div>
-            <div className="language-row"><Globe /> Kannada <span>·</span> English <span>·</span> Hindi</div>
-          </div>
+  <section className="trust-band"><div className="container"><p>BUILT FOR</p><span>Education</span><i/><span>Healthcare</span><i/><span>Real Estate</span><i/><span>Manufacturing</span><i/><span>Service Businesses</span></div></section>
 
-          <div className="workflow-card" id="demo" aria-label="Example AI admission workflow">
-            <div className="demo-topbar">
-              <div><i /><i /><i /></div>
-              <span>AI ADMISSION OFFICER</span>
-              <b>LIVE</b>
-            </div>
-            <div className="demo-body">
-              <p className="demo-label">INCOMING MESSAGE</p>
-              <div className="message">“BCA admission fees eshtu?”<small>WhatsApp · just now</small></div>
-              <div className="flow-line" />
-              <div className="flow-step"><CheckCircle weight="fill" /><span><small>INTENT UNDERSTOOD</small>Admission enquiry · Kannada + English</span></div>
-              <div className="flow-step"><CheckCircle weight="fill" /><span><small>ACTION COMPLETED</small>Fee details shared. Lead captured.</span></div>
-              <div className="flow-step active"><Sparkle weight="fill" /><span><small>NEXT ACTION</small>Campus visit slots offered</span><em>CRM updated</em></div>
-            </div>
-          </div>
-        </div>
-      </section>
+  <section className="home-section outcome-section" id="solutions"><div className="container"><div className="editorial-heading"><p className="section-kicker">FROM CONVERSATION TO OUTCOME</p><h2>AI that doesn’t just talk.<br/>It gets work done.</h2><p>A useful AI system should move a real process forward—and know when your team should step in.</p></div><div className="outcome-flow">{[[ChatsCircle,"Answer","Handle enquiries instantly from approved knowledge."],[UsersThree,"Qualify","Recognise intent and collect the details that matter."],[CalendarCheck,"Act","Book appointments and trigger the next workflow."],[Pulse,"Follow up","Reconnect at the right time without a forgotten lead."]].map(([Icon,title,copy],i)=><article key={String(title)}><span>0{i+1}</span><Icon/><h3>{String(title)}</h3><p>{String(copy)}</p></article>)}</div></div></section>
 
-      <section className="trust-band">
-        <div className="container"><p>BUILT FOR</p><span>Education</span><i /> <span>Healthcare</span><i /> <span>Real Estate</span><i /> <span>Manufacturing</span><i /> <span>Service Businesses</span></div>
-      </section>
-    </main>
-  );
-}
+  <section className="home-section employees-section" id="employees"><div className="container"><div className="editorial-heading row-heading"><div><p className="section-kicker">AI EMPLOYEES</p><h2>Meet the team that<br/>never loses the thread.</h2></div><p>Each AI employee is configured around a defined role, real business knowledge and clear boundaries.</p></div><div className="agent-grid">{agents.map(({icon:Icon,title,copy,href,tone})=><Link href={href} className={`agent-card ${tone}`} key={title}><div><Icon weight="duotone"/><span>AI EMPLOYEE</span></div><h3>{title}</h3><p>{copy}</p><b>Explore the role <ArrowRight/></b></Link>)}</div></div></section>
+
+  <section className="language-section"><div className="container language-grid"><div><p className="section-kicker blue-kicker">LANGUAGE INTELLIGENCE</p><h2>Built for how India<br/>actually speaks.</h2><p>Customers do not choose one language before starting a conversation. They move naturally between Kannada, English and Hindi. Your AI workflow should understand the intent—not judge the grammar.</p><Link href="/ai-voice-agents" className="text-link">Explore voice AI <ArrowRight/></Link></div><div className="conversation-stack"><div><small>KANNADA + ENGLISH</small>“Admission yavaga start agatte?”</div><div><small>ENGLISH</small>“Can I book a campus visit tomorrow?”</div><div><small>MIXED</small>“Fees details WhatsApp madi sir.”</div><p><CheckCircle weight="fill"/> Designed for regional and mixed-language workflows</p></div></div></section>
+
+  <section className="home-section process-section"><div className="container"><div className="editorial-heading"><p className="section-kicker">HOW WE BUILD</p><h2>From repetitive work<br/>to useful automation.</h2></div><div className="process-track">{[["01","Discover","We sit with the people doing the work and find where time is really lost."],["02","Build","We configure an AI employee around your knowledge, rules and handoffs."],["03","Connect","We link the tools already used by your team—without unnecessary replacement."],["04","Automate","The AI begins with a controlled workflow, clear limits and human oversight."],["05","Measure","We track response, completion, handoff and business impact—not AI theatre."]].map(([n,title,copy])=><article key={n}><span>{n}</span><h3>{title}</h3><p>{copy}</p></article>)}</div></div></section>
+
+  <section className="integration-section"><div className="container integration-grid"><div><p className="section-kicker">CONNECTS TO YOUR WORK</p><h2>Works with the tools your business already uses.</h2><p>Start with the systems you have. Add custom integrations only where they create meaningful value.</p></div><div className="integration-cloud">{[[WhatsappLogo,"WhatsApp Business","Available"],[CalendarCheck,"Google Calendar","Available"],[ChatsCircle,"Gmail","Available"],[CirclesFour,"CRM","Custom"],[Globe,"Website","Available"],[Factory,"ERP","Custom"]].map(([Icon,label,status])=><div key={String(label)}><Icon/><span><b>{String(label)}</b><small>{String(status)} integration</small></span></div>)}</div></div></section>
+
+  <section className="home-section measure-section"><div className="container measure-grid"><div><p className="section-kicker">OUTCOMES, NOT AI HYPE</p><h2>Don’t measure AI.<br/>Measure what it changes.</h2><p>Before implementation, we agree on the operational or commercial outcome that matters. Then we build the reporting around it.</p><Link className="text-link" href="/contact">Discuss your measurement plan <ArrowRight/></Link></div><div className="dashboard-card"><header><span>Workflow performance</span><em>Sample dashboard data</em></header><div className="metric-grid"><div><small>ENQUIRIES</small><b>1,284</b><i>Received</i></div><div><small>AI RESOLUTION</small><b>72%</b><i>Sample rate</i></div><div><small>QUALIFIED LEADS</small><b>318</b><i>Sample count</i></div><div><small>HOURS SAVED</small><b>146</b><i>Illustrative</i></div></div><div className="chart-bars" aria-label="Illustrative weekly activity chart">{[44,68,53,82,73,91,77,96,84,104,93,115].map((h,i)=><i style={{height:h}} key={i}/>)}</div></div></div></section>
+
+  <section className="home-section industries-section" id="industries"><div className="container"><div className="editorial-heading row-heading"><div><p className="section-kicker">INDUSTRY WORKFLOWS</p><h2>AI built around<br/>how your work moves.</h2></div><p>No generic chatbot template. Each workflow reflects the questions, systems and handoffs specific to the industry.</p></div><div className="industry-list">{industries.map(({icon:Icon,title,copy,href},i)=><Link href={href} key={title}><span>0{i+1}</span><Icon/><b>{title}</b><small>{copy}</small><ArrowRight/></Link>)}</div></div></section>
+
+  <section className="local-section" id="about"><div className="container local-grid"><div className="local-map"><MapPin weight="fill"/><span>Hubballi</span><i/><span>Karnataka</span><i/><span>India</span><i/><span>Global</span></div><div><p className="section-kicker mint">OUR STARTING POINT</p><h2>Built in Hubballi.<br/>Built for businesses everywhere.</h2><p>We bring local understanding to serious technology work. That means conversations shaped for regional customers, implementation that respects how teams actually operate, and systems designed to scale beyond one city.</p><Link className="text-link light-link" href="/locations/hubli">Our Hubballi presence <ArrowRight/></Link></div></div></section>
+
+  <section className="home-section principles-section"><div className="container"><div className="editorial-heading"><p className="section-kicker">WHY WORK WITH US</p><h2>Implementation without<br/>the AI complexity.</h2></div><div className="principle-grid">{[["Local intelligence","Regional language and workflow context."],["Built around you","Your process—not a generic chatbot template."],["Actions, not answers","Useful work completed across connected systems."],["Human when it matters","Clear escalation for judgment and sensitivity."],["Measurable","Outcomes defined before implementation."],["Done with you","Discovery, integration and improvement handled together."]].map(([title,copy],i)=><article key={title}><span>{String(i+1).padStart(2,"0")}</span><h3>{title}</h3><p>{copy}</p></article>)}</div></div></section>
+  <CTA/>
+  </main><Footer/></>}
