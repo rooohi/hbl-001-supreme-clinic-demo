@@ -1,8 +1,12 @@
+const configuredBrandName = "{{BRAND_NAME}}";
+
 export const company = {
-  brandName: "{{BRAND_NAME}}",
+  brandName: configuredBrandName,
+  displayName: configuredBrandName.startsWith("{{") ? "AI Automation Hubballi" : configuredBrandName,
   legalName: "{{LEGAL_NAME}}",
   domain: "{{DOMAIN}}",
   email: "{{EMAIL}}",
+  formEndpoint: process.env.NEXT_PUBLIC_CONTACT_FORM_ENDPOINT ?? "",
   phone: "{{PHONE}}",
   address: "{{ADDRESS}}",
   city: "Hubballi",

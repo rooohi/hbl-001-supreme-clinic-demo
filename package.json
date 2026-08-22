@@ -6,15 +6,16 @@
     "node": ">=22.13.0"
   },
   "scripts": {
-    "dev": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext dev",
-    "build": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext build",
-    "start": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext start",
+    "dev": "vinext dev",
+    "build": "next build",
+    "start": "vinext start",
     "test": "npm run build && node --test tests/rendered-html.test.mjs",
-    "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
+    "lint": "eslint app components config --ignore-pattern app/dashboard",
     "db:generate": "drizzle-kit generate",
     "pages:build": "next build"
   },
   "dependencies": {
+    "@phosphor-icons/react": "^2.1.10",
     "drizzle-orm": "0.45.2",
     "next": "16.2.6",
     "react": "19.2.6",
