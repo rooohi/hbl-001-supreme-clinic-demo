@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Supreme Hair & Skin Care | Hubballi",
-  description: "Thoughtful, dermatologist-led hair and skin care in Hubballi with simple online appointment booking.",
-  openGraph: { title: "Supreme Hair & Skin Care", description: "Thoughtful care. Simple booking.", images: ["/og.png"] },
-  twitter: { card: "summary_large_image", title: "Supreme Hair & Skin Care", description: "Thoughtful care. Simple booking.", images: ["/og.png"] },
+  title: "{{BRAND_NAME}} | AI Automation Company in Hubballi",
+  description: "AI employees and practical automation for businesses in Hubballi, Karnataka and beyond.",
+  openGraph: { title: "AI that works for your business.", description: "AI employees that answer, qualify, follow up, book and automate repetitive work.", images: ["/og.png"] },
+  twitter: { card: "summary_large_image", title: "AI that works for your business.", description: "Practical AI automation built in Hubballi.", images: ["/og.png"] },
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",
