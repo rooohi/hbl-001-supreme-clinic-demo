@@ -8,15 +8,17 @@ async function output(path) {
   return readFile(new URL(path, outputRoot), "utf8");
 }
 
-test("exports the complete interaction-led homepage", async () => {
+test("exports the complete trust-led homepage", async () => {
   const html = await output("index.html");
 
-  assert.match(html, /Meet the AI employee/);
-  assert.match(html, /Choose a role/);
-  assert.match(html, /Admissions/);
-  assert.match(html, /Front desk/);
-  assert.match(html, /One conversation\. Every next step connected\./);
+  assert.match(html, /AI that carries/);
+  assert.match(html, /Plan a focused pilot/);
+  assert.match(html, /THE OPERATING LAYER/);
+  assert.match(html, /ಕನ್ನಡ/);
+  assert.match(html, /Workflow performance/);
+  assert.match(html, /GROWTH VISION/);
   assert.match(html, /AI Automation Hubballi/);
+  assert.doesNotMatch(html, /images\.unsplash\.com/);
   assert.doesNotMatch(html, /\{\{BRAND_NAME\}\}/);
 });
 
@@ -38,6 +40,11 @@ test("exports every primary conversion route", async () => {
   const contact = await output("contact/index.html");
   assert.match(contact, /Show us what you want to automate\./);
   assert.match(contact, /Request AI Consultation/);
+
+  const agents = await output("ai-agents/index.html");
+  assert.match(agents, /DEPLOYMENT BLUEPRINT/);
+  assert.match(agents, /Human control plane/);
+  assert.doesNotMatch(agents, /Configured around your process, policies and systems\./);
 });
 
 test("exports search and social essentials", async () => {
