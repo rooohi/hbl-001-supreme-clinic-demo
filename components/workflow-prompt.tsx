@@ -57,13 +57,20 @@ export function TypewriterText({ text }: { text: string }) {
       return () => cancelAnimationFrame(frame);
     }
 
-    let position = 0;
+    const pauseSteps = 31;
+    const blankSteps = 6;
+    let step = 0;
     let timer = 0;
     const startDelay = window.setTimeout(() => {
       timer = window.setInterval(() => {
-        position += 1;
-        setVisible(text.slice(0, position));
-        if (position >= text.length) window.clearInterval(timer);
+        step += 1;
+        if (step <= text.length) setVisible(text.slice(0, step));
+        else if (step <= text.length + pauseSteps) setVisible(text);
+        else if (step <= text.length + pauseSteps + blankSteps) setVisible("");
+        else {
+          step = 0;
+          setVisible("");
+        }
       }, 58);
     }, 260);
     return () => {
@@ -72,7 +79,7 @@ export function TypewriterText({ text }: { text: string }) {
     };
   }, [text]);
 
-  return <><span className="sr-only">{text}</span><em className="typewriter-line" aria-hidden="true">{visible}<i/></em></>;
+  return <><span className="sr-only">{text}</span><em className="typewriter-line" aria-hidden="true">{visible}{visible !== text && <i/>}</em></>;
 }
 
 export function WorkflowPrompt() {
