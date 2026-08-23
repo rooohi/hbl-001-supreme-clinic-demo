@@ -13,12 +13,15 @@ test("exports the complete trust-led homepage", async () => {
 
   assert.match(html, /Turn customer requests/);
   assert.match(html, /Show us one workflow/);
+  assert.match(html, /INTERACTIVE WORKFLOW PREVIEW/);
+  assert.match(html, /Describe one task your team repeats/);
   assert.match(html, /HOW THE WORK MOVES/);
   assert.match(html, /ಕನ್ನಡ/);
   assert.match(html, /Sample operating view/);
   assert.match(html, /GROWTH DIRECTION/);
   assert.match(html, /AI Automation Hubballi/);
   assert.doesNotMatch(html, /images\.unsplash\.com/);
+  assert.doesNotMatch(html, /hero-intelligence-network-v2\.png/);
   assert.doesNotMatch(html, /\{\{BRAND_NAME\}\}/);
 });
 

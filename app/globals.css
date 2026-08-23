@@ -156,3 +156,55 @@ body{overflow-x:clip}.skip-link{position:fixed;z-index:100;top:10px;left:10px;tr
 
 @media(max-width:1120px){.nav-cta span{display:none}.nav-cta{width:42px;height:42px;padding:0}.nav-inner nav{gap:22px}}
 @media(max-width:760px){.abstract-system img{aspect-ratio:1/1.03;object-fit:cover;object-position:47% center}.vision-grid{grid-template-columns:1fr;gap:42px}.vision-board article>span{grid-template-columns:1fr;gap:3px}.vision-board article p{grid-column:1;padding-left:0}.vision-board article small{font-size:9px}.vision-board article b{font-size:17px}.vision-place-india .india-word{font-size:20px}.home-section,.architecture-section,.language-section,.vision-section,.content-section{padding:68px 0}.detail-hero-new{padding:68px 0 60px}}
+
+/* Interactive workflow studio */
+.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+.typewriter-line{display:inline-block;min-height:1.04em;color:#728f86;font-style:normal}
+.typewriter-line i{display:inline-block;width:.08em;height:.82em;margin-left:.07em;background:#668b80;vertical-align:-.02em;animation:typewriter-caret .78s steps(1,end) infinite}
+@keyframes typewriter-caret{50%{opacity:0}}
+.workflow-playground{width:min(960px,100%);margin:56px auto 0;text-align:left}
+.prompt-intro{display:grid;grid-template-columns:1fr auto;gap:7px 24px;align-items:end;margin:0 4px 16px}
+.prompt-intro>span{grid-column:1/3;display:flex;align-items:center;gap:7px;color:#69847c;font-size:9px;letter-spacing:.14em;font-weight:700}
+.prompt-intro>span svg{width:13px}
+.prompt-intro>b{font-size:17px;letter-spacing:-.02em}
+.prompt-intro>p{margin:0;max-width:420px;text-align:right;color:#74817d;font-size:12px;line-height:1.45}
+.prompt-gradient-frame{padding:1px;border-radius:25px;background:linear-gradient(105deg,#d8a77d 0%,#cddfd6 24%,#8eb8b0 49%,#91add0 74%,#b9a7d0 100%);box-shadow:0 24px 70px rgba(48,74,68,.12)}
+.prompt-composer{background:rgba(255,255,255,.94);border-radius:24px;padding:19px 20px 14px;backdrop-filter:blur(16px)}
+.prompt-composer textarea,.sheet-composer textarea{display:block;width:100%;resize:none;border:0;outline:0;background:transparent;color:var(--foreground);font:inherit;line-height:1.55}
+.prompt-composer textarea{min-height:78px;font-size:15px}
+.prompt-composer textarea::placeholder,.sheet-composer textarea::placeholder{color:#89938f}
+.prompt-toolbar{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-top:10px;border-top:1px solid #e6ece9;color:#84918c;font-size:10px}
+.prompt-toolbar span{display:flex;align-items:center;gap:6px}.prompt-toolbar span svg{color:#6f9d8e}
+.prompt-toolbar button,.sheet-composer button{display:grid;place-items:center;width:38px;height:38px;border:0;border-radius:12px;background:#213832;color:#fff;cursor:pointer;transition:transform .2s ease,opacity .2s ease}
+.prompt-toolbar button:hover,.sheet-composer button:hover{transform:translateY(-2px)}
+.prompt-toolbar button:disabled,.sheet-composer button:disabled{opacity:.35;cursor:not-allowed;transform:none}
+.prompt-starters{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-top:12px}
+.prompt-starters button{display:flex;align-items:center;gap:8px;border:1px solid #dfe7e3;border-radius:999px;background:rgba(255,255,255,.65);padding:9px 13px;color:#5f6d68;font:inherit;font-size:10px;cursor:pointer;transition:background .2s ease,border-color .2s ease}
+.prompt-starters button:hover{background:#fff;border-color:#b8cec5}.prompt-starters svg{width:12px}
+.workflow-sheet-layer{position:fixed;inset:0;z-index:120;background:rgba(15,26,23,.35);backdrop-filter:blur(6px);animation:sheet-fade .22s ease both}
+.workflow-sheet-dismiss{position:absolute;inset:0;width:100%;height:100%;border:0;background:transparent;cursor:default}
+.workflow-sheet{position:absolute;right:0;top:0;bottom:0;width:min(560px,94vw);display:grid;grid-template-rows:auto 1fr auto;background:#f7faf8;border-left:1px solid rgba(115,151,139,.28);box-shadow:-28px 0 90px rgba(20,40,34,.2);animation:sheet-enter .32s cubic-bezier(.22,.8,.22,1) both}
+@keyframes sheet-fade{from{opacity:0}}@keyframes sheet-enter{from{transform:translateX(35px);opacity:.5}}
+.workflow-sheet>header{display:flex;justify-content:space-between;align-items:center;padding:17px 20px;border-bottom:1px solid #dfe8e4;background:rgba(255,255,255,.78)}
+.workflow-sheet>header>span{display:grid;grid-template-columns:32px auto;align-items:center;column-gap:10px}.workflow-sheet>header>span>svg{grid-row:1/3;width:32px;height:32px;padding:7px;border-radius:10px;background:#e3f0eb;color:#577f72}.workflow-sheet>header b{font-size:14px}.workflow-sheet>header small{font-size:9px;color:#84918c;letter-spacing:.08em;text-transform:uppercase}
+.workflow-sheet>header>button{display:grid;place-items:center;width:36px;height:36px;border:1px solid #dce5e1;border-radius:11px;background:#fff;color:#485853;cursor:pointer}
+.workflow-chat{overflow:auto;padding:24px 20px 30px;scroll-behavior:smooth}
+.chat-message{display:grid;grid-template-columns:30px 1fr;gap:10px;margin-bottom:18px;animation:message-in .26s ease both}@keyframes message-in{from{transform:translateY(7px);opacity:0}}
+.chat-message>span{display:grid;place-items:center;width:30px;height:30px;border-radius:9px;background:#e4f0ec;color:#5c8b7c}.chat-message>span svg{width:15px}
+.chat-message>div>small{display:block;margin:1px 0 6px;color:#7a8984;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.chat-message>div>p{margin:0;padding:12px 14px;border:1px solid #dfe8e4;border-radius:4px 15px 15px 15px;background:#fff;color:#45534f;font-size:13px;line-height:1.55}
+.user-message{grid-template-columns:1fr 30px}.user-message>span{grid-column:2;background:#253d36;color:#fff}.user-message>div{grid-column:1;grid-row:1;text-align:right}.user-message>div>p{display:inline-block;max-width:88%;border-color:#d2e3dc;border-radius:15px 4px 15px 15px;background:#e7f1ed;text-align:left}
+.workflow-result-card{margin-top:10px;padding:17px;border:1px solid #ceded8;border-radius:18px;background:linear-gradient(145deg,#fff,#f0f7f4);text-align:left;box-shadow:0 14px 35px rgba(44,72,63,.07)}
+.workflow-result-card>span{display:flex;align-items:center;gap:6px;color:#668b7e;font-size:8px;font-weight:700;letter-spacing:.12em}.workflow-result-card>span svg{width:13px}
+.workflow-result-card h3{margin:10px 0 5px;font-size:20px;letter-spacing:-.035em}.workflow-result-card>p{margin:0 0 14px!important;padding:0!important;border:0!important;background:transparent!important;font-size:12px!important;color:#697873!important}
+.workflow-result-card ol{display:grid;gap:7px;margin:0;padding:0;list-style:none}.workflow-result-card li{display:grid;grid-template-columns:75px 1fr;gap:10px;padding:9px 10px;border-radius:11px;background:#fff;border:1px solid #e3eae7}.workflow-result-card li b{font-size:10px;color:#496d62}.workflow-result-card li span{font-size:10px;line-height:1.45;color:#687671}
+.workflow-result-card footer{display:flex;align-items:center;gap:7px;margin-top:13px;color:#71807b;font-size:9px}.workflow-result-card footer svg{color:#5e9281}
+.typing-dots{display:flex;gap:4px;padding:13px 14px;width:max-content;border:1px solid #dfe8e4;border-radius:4px 15px 15px;background:#fff}.typing-dots i{width:6px;height:6px;border-radius:50%;background:#79968d;animation:typing-dot .9s ease-in-out infinite}.typing-dots i:nth-child(2){animation-delay:.15s}.typing-dots i:nth-child(3){animation-delay:.3s}@keyframes typing-dot{50%{transform:translateY(-3px);opacity:.45}}
+.sheet-composer{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:end;margin:0 18px 18px;padding:11px 11px 11px 15px;border:1px solid #cdded7;border-radius:17px;background:#fff;box-shadow:0 12px 32px rgba(35,60,52,.09)}
+.sheet-composer textarea{min-height:42px;max-height:100px;font-size:12px}.sheet-composer button{width:36px;height:36px}
+.india-word{background:linear-gradient(100deg,#efb47e 0 34%,#fff5df 43% 58%,#8bcba6 67% 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-stroke:.28px rgba(42,64,57,.48);filter:drop-shadow(0 1px 0 rgba(255,255,255,.24))}
+.vision-place-india{margin-inline:0;padding-left:0!important;padding-right:10px!important}
+.vision-place-india:before{left:19px!important;background:linear-gradient(#90b4cf 0%,#efb47e 33%,#fff5df 51%,#8bcba6 72%,#74af8f 100%)!important}
+.vision-place-india .india-word{background:linear-gradient(100deg,#f1b478 0 34%,#fff5df 43% 58%,#8ed0a9 67% 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-stroke:.25px rgba(7,26,20,.46);filter:drop-shadow(0 0 7px rgba(241,180,120,.12)) drop-shadow(0 0 7px rgba(142,208,169,.12))}
+@media(max-width:760px){.workflow-playground{margin-top:42px}.prompt-intro{display:block;margin-bottom:14px}.prompt-intro>b{display:block;margin:7px 0 4px}.prompt-intro>p{text-align:left}.prompt-composer{padding:16px 15px 12px}.prompt-composer textarea{min-height:105px;font-size:14px}.prompt-toolbar>span{max-width:210px;line-height:1.4}.prompt-starters{justify-content:flex-start;overflow-x:auto;flex-wrap:nowrap;padding-bottom:3px}.prompt-starters button{flex:0 0 auto}.workflow-sheet{width:100vw}.workflow-chat{padding:20px 14px 26px}.sheet-composer{margin:0 12px 12px}.workflow-result-card li{grid-template-columns:65px 1fr}.typewriter-line{min-height:1.95em}.center-hero h1{min-height:2.9em}}
+@media(prefers-reduced-motion:reduce){.typewriter-line i,.workflow-sheet-layer,.workflow-sheet,.chat-message,.typing-dots i{animation:none!important}.workflow-chat{scroll-behavior:auto}}
