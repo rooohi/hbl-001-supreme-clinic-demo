@@ -19,6 +19,13 @@ export function AnimatedMetrics() {
   useEffect(() => {
     const node = root.current;
     if (!node) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      const frame = requestAnimationFrame(() => {
+        setStarted(true);
+        setProgress(1);
+      });
+      return () => cancelAnimationFrame(frame);
+    }
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
         setStarted(true);
@@ -31,6 +38,10 @@ export function AnimatedMetrics() {
 
   useEffect(() => {
     if (!started) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      const frame = requestAnimationFrame(() => setProgress(1));
+      return () => cancelAnimationFrame(frame);
+    }
     const duration = 1200;
     const start = performance.now();
     let frame = 0;
@@ -44,14 +55,14 @@ export function AnimatedMetrics() {
   }, [started]);
 
   return <div className={started ? "dashboard-card metrics-live" : "dashboard-card"} ref={root}>
-    <header><span>Workflow performance</span><em><i/> Live illustration</em></header>
+    <header><span>Sample operating view</span><em><i/> Illustrative data</em></header>
     <div className="metric-grid">{metrics.map((metric) => <div key={metric.label}>
       <small>{metric.label}</small>
       <b>{Math.round(metric.value * progress).toLocaleString("en-IN")}{metric.suffix}</b>
       <i>{metric.note}</i>
     </div>)}</div>
-    <div className="chart-shell"><div className="chart-axis"><span>120</span><span>60</span><span>0</span></div><div className="chart-bars" aria-label="Illustrative rising weekly workflow activity">
-      {activity.map((height, index) => <span className="chart-candle" style={{ "--bar-height": `${height}px`, "--bar-delay": `${index * 70}ms` } as React.CSSProperties} key={index}><i/><b/></span>)}
+    <div className="chart-shell"><div className="chart-axis"><span>120</span><span>60</span><span>0</span></div><div className="chart-bars" role="img" aria-label="Illustrative weekly workflow activity rising gradually across twelve weeks">
+      {activity.map((height, index) => <span aria-hidden="true" className="chart-candle" style={{ "--bar-height": `${height}px`, "--bar-delay": `${index * 70}ms` } as React.CSSProperties} key={index}><i/><b/></span>)}
     </div></div>
     <footer><span>Week 1</span><span>Week 4</span><span>Week 8</span><span>Week 12</span></footer>
   </div>;

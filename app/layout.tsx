@@ -4,11 +4,11 @@ import { company } from "@/config/company";
 import { PageTransition } from "@/components/page-transition";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://rooohi.github.io/hbl-001-supreme-clinic-demo"),
+  metadataBase: new URL(company.domain),
   title: `${company.displayName} | Responsible AI Systems for Business`,
-  description: "AI agents and connected workflows that help businesses respond, decide and act—with human control built in.",
-  openGraph: { title: `${company.displayName} | AI that carries real work forward`, description: "Responsible AI systems for customer operations, teams and connected workflows.", images: ["https://rooohi.github.io/hbl-001-supreme-clinic-demo/og.png"] },
-  twitter: { card: "summary_large_image", title: "AI that carries real work forward.", description: "Responsible AI systems, built in Hubballi for India and beyond.", images: ["https://rooohi.github.io/hbl-001-supreme-clinic-demo/og.png"] },
+  description: "AI roles and connected workflows that turn customer requests into finished work—with permissions, human review and a clear operating record.",
+  openGraph: { title: `${company.displayName} | Turn customer requests into finished work`, description: "Responsible AI systems for customer operations, teams and connected workflows.", images: [`${company.domain}/og.png`] },
+  twitter: { card: "summary_large_image", title: "Turn customer requests into finished work.", description: "Responsible AI systems, built in Hubballi for India and beyond.", images: [`${company.domain}/og.png`] },
   icons: {
     icon: "/hbl-001-supreme-clinic-demo/favicon.svg",
     shortcut: "/hbl-001-supreme-clinic-demo/favicon.svg",

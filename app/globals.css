@@ -100,3 +100,59 @@ body{overflow-x:clip}.skip-link{position:fixed;z-index:100;top:10px;left:10px;tr
 @media(max-width:600px){body{padding-bottom:0}.center-hero{padding-top:54px}.center-hero h1{font-size:44px}.center-hero-actions{flex-direction:column;gap:12px;width:100%}.center-hero-actions .button{width:100%;min-height:50px}.center-hero-actions .text-link{min-height:44px}.abstract-system img{aspect-ratio:1/1.03}.system-caption{display:grid;grid-template-columns:1fr 1fr}.system-caption span:last-child{grid-column:1/3;justify-content:center}.trust-strip .container{display:flex;overflow-x:auto;width:100%;padding-left:15px;scroll-snap-type:x mandatory}.trust-strip .container>div{min-width:265px;border-right:1px solid var(--border)!important;scroll-snap-align:start}.architecture-section{padding:75px 0}.architecture-intro{text-align:left}.architecture-intro h2{font-size:40px}.architecture-rail article{min-height:210px}.architecture-guard{padding:14px}.vision-section{padding:76px 0}.vision-board{padding:17px}.vision-board article>span{grid-template-columns:62px 1fr}.vision-board article p{grid-column:1/3;padding-left:0}.trust-card-grid article{min-height:190px}.trust-card-grid h3{margin-top:34px}.process-four{grid-template-columns:1fr}.metric-grid{grid-template-columns:1fr 1fr}.chart-shell{grid-template-columns:20px 1fr}.chart-bars{gap:5px}.cta-grid h2{font-size:42px}.footer-top{padding-bottom:35px}.footer-grid{grid-template-columns:1fr 1fr}.footer-bottom span:last-child{display:flex}.detail-hero-new>div>p:not(.eyebrow){font-size:16px}.detail-trust-row{flex-direction:column;align-items:center}.feature-grid article,.capability-section .feature-grid article{min-height:240px}.detail-blueprint article{min-height:160px}.delivery-steps li{grid-template-columns:28px 28px 1fr;padding:20px}.detailed-outcomes>div{grid-template-columns:auto auto 1fr}.policy-layout>div>section h2{font-size:23px}}
 
 @media(prefers-reduced-motion:reduce){.route-transition,.architecture-rail:before,.metrics-live .chart-candle,.vision-line i,.vision-board article{animation:none!important}.chart-candle{transform:scaleY(1);opacity:1}}
+
+/* 2026 audit refinement: stronger hero art, hierarchy and growth direction */
+.india-word{background:linear-gradient(100deg,#ff8a2b 0 34%,#f7f1df 42% 57%,#39b96e 66% 100%);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:700;-webkit-text-stroke:.35px rgba(31,50,45,.52);filter:drop-shadow(0 1px 0 rgba(255,255,255,.22))}
+.nav-inner a:focus-visible,.button:focus-visible,.text-link:focus-visible,.mobile-menu summary:focus-visible{outline:3px solid rgba(78,124,174,.34);outline-offset:4px}
+.center-hero{background:radial-gradient(circle at 75% 24%,rgba(204,231,220,.58),transparent 28%),linear-gradient(145deg,#fbfcfa 0%,#f4f8f6 54%,#edf3f9 100%)}
+.center-hero .hero-lede{max-width:800px}
+.abstract-system{background:#0c1520;border-color:rgba(105,143,161,.28);box-shadow:0 42px 110px rgba(19,39,48,.24)}
+.abstract-system:after{content:"";position:absolute;inset:auto 0 0;height:30%;background:linear-gradient(transparent,rgba(4,12,18,.46));pointer-events:none}
+.abstract-system img{filter:saturate(.98) contrast(1.06);object-position:center}
+.system-caption{z-index:2}
+.system-caption span{background:rgba(11,24,32,.72);border-color:rgba(211,231,225,.2);color:#edf6f3;box-shadow:0 8px 24px rgba(0,0,0,.18)}
+.system-caption svg{color:#9de1c6}
+.trust-strip .container>div{transition:background .25s ease}
+.trust-strip .container>div:hover{background:#f3f7f5}
+.architecture-rail article{transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.architecture-rail article:hover{transform:translateY(-4px);border-color:#c4d8d1;box-shadow:0 18px 35px rgba(52,78,69,.08)}
+.vision-section{background:radial-gradient(circle at 78% 20%,rgba(77,121,109,.22),transparent 30%),#203a34}
+.vision-grid{grid-template-columns:.82fr 1.18fr}
+.vision-board{background:linear-gradient(145deg,#2d5147,#29453f);border-color:rgba(191,226,213,.14);box-shadow:0 28px 75px rgba(7,22,18,.2)}
+.vision-board header{padding-bottom:17px}
+.vision-board article{grid-template-columns:48px 1fr;gap:16px;padding:14px 0;opacity:.86;animation:none;transition:opacity .25s ease,transform .25s ease}
+.vision-board article:hover{opacity:1;transform:translateX(4px)}
+.vision-board article:before{content:"";position:absolute;left:19px;top:46px;bottom:-15px;width:2px;background:linear-gradient(#85cbb5,rgba(133,203,181,.22));z-index:0}
+.vision-board article:nth-of-type(2):before{background:linear-gradient(#85cbb5,#75a6cf)}
+.vision-board article:nth-of-type(3):before{background:linear-gradient(#75a6cf,#ff9a3c 48%,#47c77c)}
+.vision-board article:last-of-type:before{display:none}
+.vision-board article>svg{position:relative;z-index:1;width:40px;height:40px;padding:10px;background:#365f55;color:#c0efdd;border-color:rgba(211,240,230,.18);box-shadow:0 0 0 5px #2d5147}
+.vision-board article>span{position:relative;z-index:1;grid-template-columns:138px 1fr;min-height:40px}
+.vision-board article small{font-size:7px;color:#a5c1b8}
+.vision-board article b{font-size:18px;letter-spacing:-.02em}
+.vision-board article p{font-size:10px;color:#b7cbc5;margin-top:5px}
+.vision-place-india{background:linear-gradient(90deg,rgba(255,153,57,.08),rgba(255,255,255,.035),rgba(62,190,113,.08));border-radius:15px;padding-inline:10px!important;margin-inline:-10px}
+.vision-place-india .india-word{font-size:21px;background:linear-gradient(100deg,#ff9d3f 0 34%,#fff8e9 43% 58%,#4ed184 67% 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-stroke:.3px rgba(4,18,14,.5);filter:drop-shadow(0 0 8px rgba(255,157,63,.16)) drop-shadow(0 0 9px rgba(78,209,132,.14))}
+.trust-card-grid article{border-top:3px solid #7da99b;transition:transform .25s ease,box-shadow .25s ease}
+.trust-card-grid article:nth-child(2){border-top-color:#819fc4}.trust-card-grid article:nth-child(3){border-top-color:#d9a46e}.trust-card-grid article:nth-child(4){border-top-color:#70a987}
+.trust-card-grid article:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(45,70,62,.08)}
+.trust-card-grid svg{width:42px;height:42px;padding:9px;border-radius:13px;background:#e4efe9}
+.desktop-navigation{align-self:stretch;align-items:center}
+.nav-dropdown{position:relative;height:100%;display:flex;align-items:center}
+.nav-dropdown summary{list-style:none;height:100%;display:flex;align-items:center;gap:5px;color:#53605d;font-size:13px;font-weight:500;cursor:pointer;border-bottom:2px solid transparent}
+.nav-dropdown summary::-webkit-details-marker{display:none}
+.nav-dropdown summary svg{width:12px;transition:transform .2s ease}
+.nav-dropdown[open] summary svg{transform:rotate(180deg)}
+.nav-dropdown summary.nav-active,.nav-dropdown[open] summary{color:var(--foreground);border-bottom-color:#6c9185}
+.nav-panel{position:absolute;left:50%;top:61px;transform:translateX(-50%);min-width:250px;padding:10px;background:rgba(255,255,255,.98);border:1px solid var(--border);border-radius:18px;box-shadow:0 24px 60px rgba(33,54,48,.14);display:grid;gap:2px}
+.nav-panel a{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:11px 12px;border-radius:10px;color:var(--foreground)!important}
+.nav-panel a:hover,.nav-panel a[aria-current="page"]{background:#edf4f1}
+.nav-panel a svg{width:14px;color:#6c9185}
+.mobile-menu>div>section{display:grid;border-bottom:1px solid var(--border);padding:8px 0}
+.mobile-menu>div>section b{font-size:9px;letter-spacing:.13em;color:#82908b;padding:9px 12px 5px}
+.mobile-menu a[aria-current="page"]{background:#edf4f1;font-weight:600}
+.home-section{padding:100px 0}.architecture-section{padding:104px 0}.language-section{padding:108px 0}.vision-section{padding:104px 0}
+.detail-hero-new{padding:92px 0 82px}.content-section{padding:96px 0}
+
+@media(max-width:1120px){.nav-cta span{display:none}.nav-cta{width:42px;height:42px;padding:0}.nav-inner nav{gap:22px}}
+@media(max-width:760px){.abstract-system img{aspect-ratio:1/1.03;object-fit:cover;object-position:47% center}.vision-grid{grid-template-columns:1fr;gap:42px}.vision-board article>span{grid-template-columns:1fr;gap:3px}.vision-board article p{grid-column:1;padding-left:0}.vision-board article small{font-size:9px}.vision-board article b{font-size:17px}.vision-place-india .india-word{font-size:20px}.home-section,.architecture-section,.language-section,.vision-section,.content-section{padding:68px 0}.detail-hero-new{padding:68px 0 60px}}

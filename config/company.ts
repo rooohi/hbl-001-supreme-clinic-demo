@@ -1,20 +1,20 @@
-const configuredBrandName = "{{BRAND_NAME}}";
+const configuredBrandName = "AI Automation Hubballi";
 
 export const company = {
   brandName: configuredBrandName,
   displayName: configuredBrandName.startsWith("{{") ? "AI Automation Hubballi" : configuredBrandName,
-  legalName: "{{LEGAL_NAME}}",
-  domain: "{{DOMAIN}}",
-  email: "{{EMAIL}}",
+  legalName: "AI Automation Hubballi",
+  domain: "https://rooohi.github.io/hbl-001-supreme-clinic-demo",
+  email: "",
   formEndpoint: process.env.NEXT_PUBLIC_CONTACT_FORM_ENDPOINT ?? "",
-  phone: "{{PHONE}}",
-  address: "{{ADDRESS}}",
+  phone: "",
+  address: "Hubballi, Karnataka",
   city: "Hubballi",
   state: "Karnataka",
   country: "India",
-  postalCode: "{{POSTAL_CODE}}",
-  tagline: "AI that works for your business.",
-  description: "Practical AI employees and workflow automation for growing businesses.",
-  languages: ["Kannada", "English", "Hindi"],
-  socials: { linkedin: "{{LINKEDIN_URL}}", instagram: "{{INSTAGRAM_URL}}" },
+  postalCode: "",
+  tagline: "Turn customer requests into finished work.",
+  description: "Practical AI roles and connected workflow automation for growing organisations.",
+  languages: ["ಕನ್ನಡ", "English", "Hindi"],
+  socials: { linkedin: "", instagram: "" },
 } as const;

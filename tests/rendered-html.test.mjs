@@ -11,12 +11,12 @@ async function output(path) {
 test("exports the complete trust-led homepage", async () => {
   const html = await output("index.html");
 
-  assert.match(html, /AI that carries/);
-  assert.match(html, /Plan a focused pilot/);
-  assert.match(html, /THE OPERATING LAYER/);
+  assert.match(html, /Turn customer requests/);
+  assert.match(html, /Show us one workflow/);
+  assert.match(html, /HOW THE WORK MOVES/);
   assert.match(html, /ಕನ್ನಡ/);
-  assert.match(html, /Workflow performance/);
-  assert.match(html, /GROWTH VISION/);
+  assert.match(html, /Sample operating view/);
+  assert.match(html, /GROWTH DIRECTION/);
   assert.match(html, /AI Automation Hubballi/);
   assert.doesNotMatch(html, /images\.unsplash\.com/);
   assert.doesNotMatch(html, /\{\{BRAND_NAME\}\}/);
@@ -38,12 +38,12 @@ test("exports every primary conversion route", async () => {
 
   await Promise.all(routes.map((route) => access(new URL(route, outputRoot))));
   const contact = await output("contact/index.html");
-  assert.match(contact, /Show us what you want to automate\./);
-  assert.match(contact, /Request AI Consultation/);
+  assert.match(contact, /Show us where the work slows down/);
+  assert.match(contact, /Send workflow for review/);
 
   const agents = await output("ai-agents/index.html");
   assert.match(agents, /DEPLOYMENT BLUEPRINT/);
-  assert.match(agents, /Human control plane/);
+  assert.match(agents, /Named human owner/);
   assert.doesNotMatch(agents, /Configured around your process, policies and systems\./);
 });
 

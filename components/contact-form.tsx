@@ -16,11 +16,18 @@ export function ContactForm(){
     const form=new FormData(element);
     const name=String(form.get("name")||"").trim();
     const email=String(form.get("email")||"").trim();
+    const phone=String(form.get("phone")||"").trim();
+    const contactMethod=String(form.get("contactMethod")||"Email");
     const workflow=String(form.get("workflow")||"").trim();
+    const supportEmail=String(company.email).trim();
 
     if(String(form.get("company_website")||"")) return;
     if(!name||!email.includes("@")||workflow.length<15){
       setError("Please add your name, a valid work email and a little more detail about the workflow.");
+      return;
+    }
+    if((contactMethod==="Phone"||contactMethod==="WhatsApp")&&phone.length<8){
+      setError(`Please add a phone number so we can contact you by ${contactMethod}.`);
       return;
     }
 
@@ -36,13 +43,13 @@ export function ContactForm(){
           body:JSON.stringify(payload),
         });
         if(!response.ok) throw new Error("The form service could not accept this message.");
-        setSentMessage("Your workflow has been received. Our team can now review the process before the first conversation.");
+        setSentMessage("We’ve received your workflow. We’ll review the process, systems and decision points before replying through your selected contact method.");
         setSent(true);
         element.reset();
-      }else if(!company.email.startsWith("{{")){
+      }else if(supportEmail){
         const subject=encodeURIComponent(`Workflow enquiry from ${name}`);
         const body=encodeURIComponent(`Name: ${name}\nBusiness: ${form.get("business")}\nEmail: ${email}\nPhone: ${form.get("phone")}\nIndustry: ${form.get("industry")}\nTeam size: ${form.get("teamSize")}\nPreferred contact: ${form.get("contactMethod")}\n\nWorkflow:\n${workflow}`);
-        window.location.href=`mailto:${company.email}?subject=${subject}&body=${body}`;
+        window.location.href=`mailto:${supportEmail}?subject=${subject}&body=${body}`;
         setSentMessage("Your email app has opened with the workflow details ready to send.");
         setSent(true);
       }else{
@@ -65,7 +72,7 @@ export function ContactForm(){
     <fieldset className="contact-method"><legend>How should we contact you?</legend><label><input name="contactMethod" type="radio" value="Email" defaultChecked/> Email</label><label><input name="contactMethod" type="radio" value="Phone"/> Phone</label><label><input name="contactMethod" type="radio" value="WhatsApp"/> WhatsApp</label></fieldset>
     <label className="honeypot" aria-hidden="true">Company website<input name="company_website" tabIndex={-1} autoComplete="off"/></label>
     {error&&<p className="form-error" role="alert">{error}</p>}
-    <button className="button form-submit" type="submit" disabled={sending}>{sending?<><CircleNotch className="spin"/> Sending…</>:<>Request AI Consultation <ArrowRight/></>}</button>
+    <button className="button form-submit" type="submit" disabled={sending}>{sending?<><CircleNotch className="spin"/> Sending…</>:<>Send workflow for review <ArrowRight/></>}</button>
     <small>Your information is used only to understand and respond to this enquiry. Do not include sensitive customer data.</small>
   </form>
 }
