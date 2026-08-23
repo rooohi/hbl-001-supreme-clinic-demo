@@ -88,6 +88,8 @@ export function WorkflowPrompt() {
   const [thinking, setThinking] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const closeButton = useRef<HTMLButtonElement>(null);
+  const dialog = useRef<HTMLElement>(null);
+  const returnFocus = useRef<HTMLElement|null>(null);
   const chatEnd = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -95,13 +97,25 @@ export function WorkflowPrompt() {
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     closeButton.current?.focus();
-    const closeOnEscape = (event: globalThis.KeyboardEvent) => {
-      if (event.key === "Escape") setOpen(false);
+    const manageDialogKeyboard = (event: globalThis.KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        setOpen(false);
+        return;
+      }
+      if(event.key!=="Tab"||!dialog.current)return;
+      const focusable=Array.from(dialog.current.querySelectorAll<HTMLElement>('button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])')).filter(element=>!element.hasAttribute("aria-hidden"));
+      if(!focusable.length)return;
+      const first=focusable[0];
+      const last=focusable[focusable.length-1];
+      if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}
+      else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}
     };
-    window.addEventListener("keydown", closeOnEscape);
+    window.addEventListener("keydown", manageDialogKeyboard);
     return () => {
       document.body.style.overflow = previousOverflow;
-      window.removeEventListener("keydown", closeOnEscape);
+      window.removeEventListener("keydown", manageDialogKeyboard);
+      returnFocus.current?.focus();
     };
   }, [open]);
 
@@ -113,6 +127,7 @@ export function WorkflowPrompt() {
     event?.preventDefault();
     const cleanPrompt = prompt.trim();
     if (!cleanPrompt || thinking) return;
+    if(!open)returnFocus.current=document.activeElement instanceof HTMLElement?document.activeElement:null;
     setOpen(true);
     setThinking(true);
     setMessages((current) => [...current, { role: "user", text: cleanPrompt }]);
@@ -152,8 +167,8 @@ export function WorkflowPrompt() {
     </section>
 
     {open && createPortal(<div className="workflow-sheet-layer">
-      <button className="workflow-sheet-dismiss" type="button" onClick={() => setOpen(false)} aria-label="Close workflow preview"/>
-      <aside className="workflow-sheet" role="dialog" aria-modal="true" aria-labelledby="workflow-result-title">
+      <button className="workflow-sheet-dismiss" type="button" tabIndex={-1} aria-hidden="true" onClick={() => setOpen(false)}/>
+      <aside ref={dialog} className="workflow-sheet" role="dialog" aria-modal="true" aria-labelledby="workflow-result-title">
         <header><span><CirclesFour weight="duotone"/><b id="workflow-result-title">Workflow Studio</b><small>Interactive preview</small></span><button ref={closeButton} type="button" onClick={() => setOpen(false)} aria-label="Close workflow preview"><X/></button></header>
         <div className="workflow-chat" aria-live="polite">
           <div className="chat-message assistant-message"><span><Sparkle weight="fill"/></span><div><small>Workflow guide</small><p>Tell me what repeats, where it slows down and what should remain with a person.</p></div></div>

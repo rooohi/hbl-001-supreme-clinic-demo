@@ -33,6 +33,7 @@ test("exports every primary conversion route", async () => {
     "case-studies/index.html",
     "insights/index.html",
     "about/index.html",
+    "trust/index.html",
     "contact/index.html",
     "privacy/index.html",
     "terms/index.html",
@@ -42,12 +43,30 @@ test("exports every primary conversion route", async () => {
   await Promise.all(routes.map((route) => access(new URL(route, outputRoot))));
   const contact = await output("contact/index.html");
   assert.match(contact, /Show us where the work slows down/);
-  assert.match(contact, /Send workflow for review/);
+  assert.match(contact, /Continue in WhatsApp/);
+  assert.match(contact, /73532 60596/);
+
+  const about = await output("about/index.html");
+  assert.match(about, /Rohit S Kale/);
+  assert.match(about, /rohit-s-kale\.jpg/);
+
+  const caseStudies = await output("case-studies/index.html");
+  assert.match(caseStudies, /There are no published customer case studies yet/);
+
+  const trust = await output("trust/index.html");
+  assert.match(trust, /No certification claims/);
 
   const agents = await output("ai-agents/index.html");
   assert.match(agents, /DEPLOYMENT BLUEPRINT/);
   assert.match(agents, /Named human owner/);
   assert.doesNotMatch(agents, /Configured around your process, policies and systems\./);
+});
+
+test("exports the device-local CRM and removes the clinic dashboard", async () => {
+  const crm = await output("crm/index.html");
+  assert.match(crm, /Simple CRM/);
+  assert.match(crm, /Device-local by design/);
+  await assert.rejects(access(new URL("dashboard/index.html", outputRoot)));
 });
 
 test("exports search and social essentials", async () => {
@@ -59,6 +78,10 @@ test("exports search and social essentials", async () => {
 
   assert.match(home, /property="og:title"/);
   assert.match(home, /name="twitter:card"/);
+  assert.match(home, /application\/ld\+json/);
   assert.match(robots, /Sitemap:/);
+  assert.match(robots, /Disallow: \/hbl-001-supreme-clinic-demo\/crm\//);
   assert.match(sitemap, /ai-employees\/sales-agent/);
+  assert.match(sitemap, /\/trust/);
+  assert.doesNotMatch(sitemap, /\/crm/);
 });
