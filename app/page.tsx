@@ -1,9 +1,8 @@
 import Link from "next/link";
 import { ArrowRight, Buildings, CalendarCheck, ChartLineUp, CheckCircle, ChatsCircle, CirclesFour, Factory, GraduationCap, Handshake, Headset, Heartbeat, MapPin, PhoneCall, Pulse, ShieldCheck, Sparkle, Storefront, Translate, UsersThree } from "@phosphor-icons/react/dist/ssr";
 import { AnimatedMetrics } from "@/components/animated-metrics";
-import { HeroMetrics } from "@/components/hero-metrics";
 import { CTA, Footer, Header } from "@/components/site-shell";
-import { WorkflowPrompt } from "@/components/workflow-prompt";
+import { TypewriterText, WorkflowPrompt } from "@/components/workflow-prompt";
 
 const agents = [
   { icon: ChartLineUp, title: "Sales", role: "AI Sales Agent", copy: "Qualifies interest and keeps every good lead moving.", href: "/ai-employees/sales-agent", tone: "sage" },
@@ -23,19 +22,23 @@ const industries = [
 export default function Home() { return <><Header/><main>
   <section className="cinematic-hero" id="top">
     <div className="cinematic-bg" aria-hidden="true"><video className="cinematic-video" autoPlay muted loop playsInline preload="metadata"><source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260809_012548_ef22562c-c0ae-4816-ad9d-f8922af4e6a7.mp4" type="video/mp4"/></video><div className="cinematic-veil"/><div className="cinematic-grain"/></div>
-    <div className="cinematic-hero-center">
-      <div className="cinematic-trust hero-anim" style={{"--hero-delay":".05s"} as React.CSSProperties}>
-        <div className="cinematic-trust-rings" aria-hidden="true"><span><ShieldCheck weight="duotone"/></span><span><Translate weight="duotone"/></span><span><UsersThree weight="duotone"/></span></div>
-        <p>Responsible AI, built around real work</p>
+    <div className="container cinematic-hero-layout">
+      <div className="cinematic-hero-copy">
+        <div className="cinematic-trust hero-anim" style={{"--hero-delay":".05s"} as React.CSSProperties}>
+          <div className="cinematic-trust-rings" aria-hidden="true"><span><ShieldCheck weight="duotone"/></span><span><Translate weight="duotone"/></span><span><UsersThree weight="duotone"/></span></div>
+          <p>Responsible AI, built around real work</p>
+        </div>
+        <h1 className="cinematic-headline"><span>Turn customer requests</span><TypewriterText text="into finished work."/></h1>
+        <p className="cinematic-lede hero-anim" style={{"--hero-delay":".3s"} as React.CSSProperties}>AI agents that answer, collect the right details, update your systems and bring people in when judgment matters.</p>
+        <a className="cinematic-cta hero-anim" style={{"--hero-delay":".42s"} as React.CSSProperties} href="#workflow-prompt">Show us one workflow <ArrowRight/></a>
+        <div className="hero-assurance hero-anim" style={{"--hero-delay":".52s"} as React.CSSProperties}><span><ShieldCheck weight="fill"/> Local preview</span><span><UsersThree weight="fill"/> Human handoff</span><span><Translate weight="fill"/> ಕನ್ನಡ · English · हिंदी</span></div>
       </div>
-      <h1 className="cinematic-headline"><span>Turn customer requests</span><span>into finished work.</span></h1>
-      <p className="cinematic-lede hero-anim" style={{"--hero-delay":".3s"} as React.CSSProperties}>We design AI agents that answer, collect the right details, update your systems, schedule the next step and bring people in when judgment matters.</p>
-      <a className="cinematic-cta hero-anim" style={{"--hero-delay":".42s"} as React.CSSProperties} href="#workflow-lab">Show us one workflow <ArrowRight/></a>
+      <div className="hero-chat-panel hero-anim" style={{"--hero-delay":".22s"} as React.CSSProperties}>
+        <header><span><Sparkle weight="fill"/></span><div><b>Workflow guide</b><small>Map a practical first use case</small></div><em><i/> LIVE PREVIEW</em></header>
+        <WorkflowPrompt variant="hero"/>
+      </div>
     </div>
-    <HeroMetrics/>
   </section>
-
-  <section className="workflow-lab-section" id="workflow-lab"><div className="container workflow-lab-intro"><p className="section-kicker">TRY THE EXPERIENCE</p><h2>Start with one task your team repeats.</h2><p>Describe the work in everyday language. The preview maps a practical AI workflow locally in your browser—nothing is sent or stored.</p></div><div className="container"><WorkflowPrompt/></div></section>
 
   <section className="trust-strip"><div className="container">{[[ShieldCheck,"One workflow at a time","A clear owner and measurable outcome"],[CirclesFour,"Connects to existing tools","CRM, calendar, ERP, inbox and approved data"],[Translate,"ಕನ್ನಡ · English · हिंदी","Natural mixed-language conversations"],[Pulse,"Human review built in","Approvals, escalation and reviewable activity"]].map(([Icon,title,copy])=><div key={String(title)}><Icon weight="duotone"/><span><b>{String(title)}</b><small>{String(copy)}</small></span></div>)}</div></section>
 

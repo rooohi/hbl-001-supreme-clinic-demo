@@ -13,8 +13,9 @@ test("exports the complete trust-led homepage", async () => {
 
   assert.match(html, /Turn customer requests/);
   assert.match(html, /Show us one workflow/);
-  assert.match(html, /INTERACTIVE WORKFLOW PREVIEW/);
-  assert.match(html, /Describe one task your team repeats/);
+  assert.match(html, /What does your team repeat every day/);
+  assert.match(html, /Share one workflow/);
+  assert.match(html, /torvent-logo\.png/);
   assert.match(html, /HOW THE WORK MOVES/);
   assert.match(html, /ಕನ್ನಡ/);
   assert.match(html, /Sample operating view/);

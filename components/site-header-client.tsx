@@ -32,26 +32,24 @@ export function SiteHeader(){
   },[homeMenuOpen]);
 
   if(isHome)return <><a className="skip-link" href="#main-content">Skip to content</a><header className="site-header cinematic-header"><div className="cinematic-nav-wrap">
-    <Link className="cinematic-logo" href="/" aria-label={`${company.displayName} home`}><Image src="/hbl-001-supreme-clinic-demo/favicon.svg" alt="" width="52" height="52" priority/></Link>
+    <Link className="cinematic-logo brand-logo-chip" href="/" aria-label={`${company.displayName} home`}><Image src="/hbl-001-supreme-clinic-demo/torvent-logo.png" alt="TORVENT" width="2172" height="724" priority/></Link>
     <nav aria-label="Primary navigation" className="cinematic-nav-pill">
       <Link className="active" href="/" aria-current="page">Home</Link>
       <Link href="/ai-agents">AI systems</Link>
       <Link href="/case-studies">Workflows</Link>
       <Link href="/contact">Contact</Link>
     </nav>
-    <Link className="cinematic-nav-cta" href="/contact">Show us one workflow <ArrowRight/></Link>
     <button className={`cinematic-menu-button ${homeMenuOpen?"open":""}`} type="button" aria-label={homeMenuOpen?"Close navigation":"Open navigation"} aria-expanded={homeMenuOpen} onClick={()=>setHomeMenuOpen(value=>!value)}>{homeMenuOpen?<X/>:<List/>}</button>
   </div></header>{homeMenuOpen&&<div className="cinematic-menu-layer"><button className="cinematic-menu-backdrop" type="button" aria-label="Close navigation" onClick={()=>setHomeMenuOpen(false)}/><nav className="cinematic-menu-sheet" aria-label="Mobile navigation">
-    <Link className="active" href="/" aria-current="page" onClick={()=>setHomeMenuOpen(false)}>Home</Link><Link href="/ai-agents" onClick={()=>setHomeMenuOpen(false)}>AI systems</Link><Link href="/case-studies" onClick={()=>setHomeMenuOpen(false)}>Workflow library</Link><Link href="/about" onClick={()=>setHomeMenuOpen(false)}>About</Link><Link href="/contact" onClick={()=>setHomeMenuOpen(false)}>Contact</Link><Link className="cinematic-menu-cta" href="/contact" onClick={()=>setHomeMenuOpen(false)}>Show us one workflow <ArrowRight/></Link>
+    <Link className="active" href="/" aria-current="page" onClick={()=>setHomeMenuOpen(false)}>Home</Link><Link href="/ai-agents" onClick={()=>setHomeMenuOpen(false)}>AI systems</Link><Link href="/case-studies" onClick={()=>setHomeMenuOpen(false)}>Workflow library</Link><Link href="/about" onClick={()=>setHomeMenuOpen(false)}>About</Link><Link href="/contact" onClick={()=>setHomeMenuOpen(false)}>Contact</Link>
   </nav></div>}<span className="skip-target" id="main-content" tabIndex={-1}/></>;
 
   return <><a className="skip-link" href="#main-content">Skip to content</a><header className="site-header"><div className="container nav-inner">
-    <Link className="wordmark" href="/" aria-label={`${company.displayName} home`}><span className="brand-glyph">AI</span><span>{company.displayName}</span></Link>
+    <Link className="brand-logo-chip interior-logo" href="/" aria-label={`${company.displayName} home`}><Image src="/hbl-001-supreme-clinic-demo/torvent-logo.png" alt="TORVENT" width="2172" height="724" priority/></Link>
     <nav aria-label="Primary navigation" className="desktop-navigation">{navigation.map(group=>{
       const active=group.links.some(([,href])=>isCurrent(pathname,href));
       return <details className="nav-dropdown" key={group.label}><summary className={active?"nav-active":undefined}>{group.label}<CaretDown/></summary><div className="nav-panel">{group.links.map(([label,href])=><Link href={href} key={href} aria-current={isCurrent(pathname,href)?"page":undefined}>{label}<ArrowRight/></Link>)}</div></details>;
     })}</nav>
-    <Link className="nav-cta" href="/contact"><span>Show us one workflow</span><ArrowRight/></Link>
     <details className="mobile-menu"><summary>Menu</summary><div><div className="mobile-menu-primary"><Link className="mobile-menu-cta" href="/contact">Show us one workflow <ArrowRight/></Link><a className="mobile-whatsapp" href={`https://wa.me/${company.whatsappNumber}`} target="_blank" rel="noreferrer"><WhatsappLogo weight="fill"/> WhatsApp</a></div>{navigation.map(group=><section key={group.label}><b>{group.label}</b>{group.links.map(([label,href])=><Link href={href} key={href} aria-current={isCurrent(pathname,href)?"page":undefined}>{label}</Link>)}</section>)}</div></details>
   </div></header><span className="skip-target" id="main-content" tabIndex={-1}/></>;
 }

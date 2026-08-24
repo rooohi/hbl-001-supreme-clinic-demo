@@ -82,7 +82,7 @@ export function TypewriterText({ text }: { text: string }) {
   return <><span className="sr-only">{text}</span><em className="typewriter-line" aria-hidden="true">{visible}{visible !== text && <i/>}</em></>;
 }
 
-export function WorkflowPrompt() {
+export function WorkflowPrompt({ variant = "default" }: { variant?: "default" | "hero" }) {
   const [prompt, setPrompt] = useState("");
   const [open, setOpen] = useState(false);
   const [thinking, setThinking] = useState(false);
@@ -150,12 +150,15 @@ export function WorkflowPrompt() {
   }
 
   return <>
-    <section className="workflow-playground" aria-labelledby="workflow-playground-title">
-      <div className="prompt-intro">
+    <section className={`workflow-playground ${variant === "hero" ? "workflow-playground-hero" : ""}`} aria-labelledby="workflow-playground-title">
+      {variant === "hero" ? <div className="hero-chat-conversation">
+        <div className="hero-chat-message assistant"><span><Sparkle weight="fill"/></span><p><b id="workflow-playground-title">What does your team repeat every day?</b><small>Share one workflow. I’ll map the first useful version.</small></p></div>
+        <div className="hero-chat-message user"><p>We receive enquiries on WhatsApp, collect details and schedule the next step.</p><span><User weight="fill"/></span></div>
+      </div> : <div className="prompt-intro">
         <span><Sparkle weight="fill"/> INTERACTIVE WORKFLOW PREVIEW</span>
         <b id="workflow-playground-title">Describe one task your team repeats.</b>
         <p>Try a real process. This preview maps the request locally in your browser—nothing is sent or stored.</p>
-      </div>
+      </div>}
       <div className="prompt-gradient-frame">
         <form className="prompt-composer" onSubmit={send}>
           <label className="sr-only" htmlFor="workflow-prompt">Describe a workflow to map</label>
