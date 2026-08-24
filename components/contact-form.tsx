@@ -67,7 +67,7 @@ export function ContactForm(){
         setSentMessage("We have received your workflow and will respond during business hours.");
       }else{
         const message=[
-          "Hello AI Automation Hubballi, I would like a workflow review.",
+          "Hello TORVENT, I would like a workflow review.",
           "",
           `Name: ${name}`,
           `Business: ${String(form.get("business")||"Not provided")}`,

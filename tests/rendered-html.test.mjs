@@ -12,7 +12,7 @@ test("exports the complete trust-led homepage", async () => {
   const html = await output("index.html");
 
   assert.match(html, /Turn customer requests/);
-  assert.match(html, /Show us one workflow/);
+  assert.match(html, /Show Us Your Workflow/);
   assert.match(html, /torvent-logo\.png/);
   assert.doesNotMatch(html, /What does your team repeat every day/);
   assert.doesNotMatch(html, /workflow-playground-hero/);
@@ -20,7 +20,7 @@ test("exports the complete trust-led homepage", async () => {
   assert.match(html, /ಕನ್ನಡ/);
   assert.match(html, /Sample operating view/);
   assert.match(html, /GROWTH DIRECTION/);
-  assert.match(html, /AI Automation Hubballi/);
+  assert.match(html, /TORVENT/);
   assert.doesNotMatch(html, /images\.unsplash\.com/);
   assert.doesNotMatch(html, /hero-intelligence-network-v2\.png/);
   assert.doesNotMatch(html, /\{\{BRAND_NAME\}\}/);

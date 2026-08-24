@@ -1,8 +1,9 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, Buildings, CalendarCheck, ChartLineUp, CheckCircle, ChatsCircle, CirclesFour, Factory, GraduationCap, Handshake, Headset, Heartbeat, MapPin, PhoneCall, Pulse, ShieldCheck, Sparkle, Storefront, Translate, UsersThree } from "@phosphor-icons/react/dist/ssr";
 import { AnimatedMetrics } from "@/components/animated-metrics";
 import { CTA, Footer, Header } from "@/components/site-shell";
-import { TypewriterText } from "@/components/workflow-prompt";
+import { TypewriterText, WorkflowPrompt } from "@/components/workflow-prompt";
 
 const agents = [
   { icon: ChartLineUp, title: "Sales", role: "AI Sales Agent", copy: "Qualifies interest and keeps every good lead moving.", href: "/ai-employees/sales-agent", tone: "sage" },
@@ -21,7 +22,7 @@ const industries = [
 
 export default function Home() { return <><Header/><main>
   <section className="cinematic-hero" id="top">
-    <div className="cinematic-bg" aria-hidden="true"><video className="cinematic-video" autoPlay muted loop playsInline preload="metadata"><source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260809_012548_ef22562c-c0ae-4816-ad9d-f8922af4e6a7.mp4" type="video/mp4"/></video><div className="cinematic-veil"/><div className="cinematic-grain"/></div>
+    <div className="cinematic-bg" aria-hidden="true"><Image src="/hbl-001-supreme-clinic-demo/torvent-logo.png" alt="" width="2172" height="724" className="hero-wordmark-field"/><div className="cinematic-veil"/><div className="cinematic-grain"/></div>
     <div className="container cinematic-hero-layout">
       <div className="cinematic-hero-copy">
         <div className="cinematic-trust hero-anim" style={{"--hero-delay":".05s"} as React.CSSProperties}>
@@ -30,13 +31,15 @@ export default function Home() { return <><Header/><main>
         </div>
         <h1 className="cinematic-headline"><span>Turn customer requests</span><TypewriterText text="into finished work."/></h1>
         <p className="cinematic-lede hero-anim" style={{"--hero-delay":".3s"} as React.CSSProperties}>AI agents that answer, collect the right details, update your systems and bring people in when judgment matters.</p>
-        <Link className="cinematic-cta hero-anim" style={{"--hero-delay":".42s"} as React.CSSProperties} href="/contact">Show us one workflow <ArrowRight/></Link>
+        <div className="hero-actions-premium hero-anim" style={{"--hero-delay":".42s"} as React.CSSProperties}><Link className="cinematic-cta" href="/contact">Show Us Your Workflow <ArrowRight/></Link><Link className="cinematic-secondary-cta" href="#how-it-works">See How It Works</Link></div>
         <div className="hero-assurance hero-anim" style={{"--hero-delay":".52s"} as React.CSSProperties}><span><ShieldCheck weight="fill"/> Local preview</span><span><UsersThree weight="fill"/> Human handoff</span><span><Translate weight="fill"/> ಕನ್ನಡ · English · हिंदी</span></div>
       </div>
     </div>
   </section>
 
   <section className="trust-strip"><div className="container">{[[ShieldCheck,"One workflow at a time","A clear owner and measurable outcome"],[CirclesFour,"Connects to existing tools","CRM, calendar, ERP, inbox and approved data"],[Translate,"ಕನ್ನಡ · English · हिंदी","Natural mixed-language conversations"],[Pulse,"Human review built in","Approvals, escalation and reviewable activity"]].map(([Icon,title,copy])=><div key={String(title)}><Icon weight="duotone"/><span><b>{String(title)}</b><small>{String(copy)}</small></span></div>)}</div></section>
+
+  <section className="workflow-lab-section" id="how-it-works"><div className="container workflow-lab-intro"><p className="section-kicker">WORKFLOW STUDIO</p><h2>See one repeated task become a controlled AI workflow.</h2><p>Describe a process. The local preview maps how TORVENT could receive the request, use approved context, take a permitted action and hand exceptions to a person.</p></div><div className="container"><WorkflowPrompt/></div></section>
 
   <section className="home-section employees-section" id="solutions"><div className="container"><div className="editorial-heading center-heading"><p className="section-kicker">AI ROLES</p><h2>One role. Clear responsibility.</h2><p>Each role owns a defined set of tasks, works from approved information and sends exceptions to a named person.</p></div><div className="agent-grid">{agents.map(({icon:Icon,title,role,copy,href,tone})=><Link href={href} className={`agent-card ${tone}`} key={role}><div><Icon weight="duotone"/><span>{title}</span></div><h3>{role}</h3><p>{copy}</p><b>View role <ArrowRight/></b></Link>)}</div></div></section>
 

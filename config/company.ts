@@ -1,9 +1,9 @@
-const configuredBrandName = "AI Automation Hubballi";
+const configuredBrandName = "TORVENT";
 
 export const company = {
   brandName: configuredBrandName,
-  displayName: configuredBrandName.startsWith("{{") ? "AI Automation Hubballi" : configuredBrandName,
-  legalName: "AI Automation Hubballi",
+  displayName: configuredBrandName,
+  legalName: "TORVENT",
   domain: "https://rooohi.github.io/hbl-001-supreme-clinic-demo",
   email: "",
   formEndpoint: process.env.NEXT_PUBLIC_CONTACT_FORM_ENDPOINT ?? "",

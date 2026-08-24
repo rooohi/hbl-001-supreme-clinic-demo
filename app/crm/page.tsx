@@ -3,7 +3,7 @@ import { CrmWorkspace } from "@/components/crm-workspace";
 
 export const metadata:Metadata={
   title:"Lead Workspace",
-  description:"A device-local lead workspace for AI Automation Hubballi.",
+  description:"A device-local lead workspace for TORVENT.",
   robots:{index:false,follow:false},
 };
 
