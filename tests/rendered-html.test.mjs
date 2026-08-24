@@ -11,15 +11,17 @@ async function output(path) {
 test("exports the complete trust-led homepage", async () => {
   const html = await output("index.html");
 
-  assert.match(html, /Turn customer requests/);
+  assert.match(html, /AI that works for your business/);
   assert.match(html, /Show Us Your Workflow/);
   assert.match(html, /torvent-logo\.png/);
   assert.doesNotMatch(html, /What does your team repeat every day/);
   assert.doesNotMatch(html, /workflow-playground-hero/);
-  assert.match(html, /HOW THE WORK MOVES/);
+  assert.match(html, /HOW TORVENT WORKS/);
   assert.match(html, /ಕನ್ನಡ/);
   assert.match(html, /Sample operating view/);
-  assert.match(html, /GROWTH DIRECTION/);
+  assert.match(html, /DESIGNED FOR GLOBAL SCALE/);
+  assert.doesNotMatch(html, /WORKFLOW STUDIO/);
+  assert.doesNotMatch(html, /WorkflowPrompt/);
   assert.match(html, /TORVENT/);
   assert.doesNotMatch(html, /images\.unsplash\.com/);
   assert.doesNotMatch(html, /hero-intelligence-network-v2\.png/);
@@ -44,12 +46,14 @@ test("exports every primary conversion route", async () => {
   await Promise.all(routes.map((route) => access(new URL(route, outputRoot))));
   const contact = await output("contact/index.html");
   assert.match(contact, /Show us where the work slows down/);
-  assert.match(contact, /Continue in WhatsApp/);
-  assert.match(contact, /73532 60596/);
+  assert.match(contact, /Business enquiries are being configured/);
+  assert.doesNotMatch(contact, /73532 60596/);
+  assert.doesNotMatch(contact, /wa\.me/);
 
   const about = await output("about/index.html");
-  assert.match(about, /Rohit S Kale/);
-  assert.match(about, /rohit-s-kale\.jpg/);
+  assert.match(about, /Operational AI with responsibility built in/);
+  assert.doesNotMatch(about, /Rohit S Kale/);
+  assert.doesNotMatch(about, /rohit-s-kale\.jpg/);
 
   const caseStudies = await output("case-studies/index.html");
   assert.match(caseStudies, /There are no published customer case studies yet/);
@@ -59,7 +63,7 @@ test("exports every primary conversion route", async () => {
 
   const agents = await output("ai-agents/index.html");
   assert.match(agents, /DEPLOYMENT BLUEPRINT/);
-  assert.match(agents, /Named human owner/);
+  assert.match(agents, /Accountable team review/);
   assert.doesNotMatch(agents, /Configured around your process, policies and systems\./);
 });
 

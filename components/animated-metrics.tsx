@@ -14,7 +14,7 @@ const activity = [38, 54, 47, 68, 61, 79, 73, 88, 81, 96, 91, 108];
 export function AnimatedMetrics() {
   const root = useRef<HTMLDivElement>(null);
   const [started, setStarted] = useState(false);
-  const [progress, setProgress] = useState(0);
+  const [progress, setProgress] = useState(1);
 
   useEffect(() => {
     const node = root.current;
@@ -28,6 +28,7 @@ export function AnimatedMetrics() {
     }
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
+        setProgress(0);
         setStarted(true);
         observer.disconnect();
       }

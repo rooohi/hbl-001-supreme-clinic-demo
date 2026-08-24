@@ -158,7 +158,7 @@ body{overflow-x:clip}.skip-link{position:fixed;z-index:100;top:10px;left:10px;tr
 @media(max-width:1120px){.nav-cta span{display:none}.nav-cta{width:42px;height:42px;padding:0}.nav-inner nav{gap:22px}}
 @media(max-width:760px){.abstract-system img{aspect-ratio:1/1.03;object-fit:cover;object-position:47% center}.vision-grid{grid-template-columns:1fr;gap:42px}.vision-board article>span{grid-template-columns:1fr;gap:3px}.vision-board article p{grid-column:1;padding-left:0}.vision-board article small{font-size:9px}.vision-board article b{font-size:17px}.vision-place-india .india-word{font-size:20px}.home-section,.architecture-section,.language-section,.vision-section,.content-section{padding:68px 0}.detail-hero-new{padding:68px 0 60px}}
 
-/* Interactive workflow studio */
+/* Legacy interactive preview styles */
 .sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
 .typewriter-line{display:inline-block;min-height:1.04em;color:#728f86;font-style:normal}
 .typewriter-line i{display:inline-block;width:.08em;height:.82em;margin-left:.07em;background:#668b80;vertical-align:-.02em;animation:typewriter-caret .78s steps(1,end) infinite}

@@ -1,65 +1,66 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Buildings, CalendarCheck, ChartLineUp, CheckCircle, ChatsCircle, CirclesFour, Factory, GraduationCap, Handshake, Headset, Heartbeat, MapPin, PhoneCall, Pulse, ShieldCheck, Sparkle, Storefront, Translate, UsersThree } from "@phosphor-icons/react/dist/ssr";
+import { ArrowDown, ArrowRight, BookOpenText, CalendarCheck, CheckCircle, CirclesFour, EnvelopeSimple, Globe, MapPin, Microphone, Pulse, ShieldCheck, Sparkle, Translate, UserFocus, UsersThree, WhatsappLogo, Wrench } from "@phosphor-icons/react/dist/ssr";
 import { AnimatedMetrics } from "@/components/animated-metrics";
+import { IndustrySelector } from "@/components/industry-selector";
 import { CTA, Footer, Header } from "@/components/site-shell";
-import { TypewriterText, WorkflowPrompt } from "@/components/workflow-prompt";
 
 const agents = [
-  { icon: ChartLineUp, title: "Sales", role: "AI Sales Agent", copy: "Qualifies interest and keeps every good lead moving.", href: "/ai-employees/sales-agent", tone: "sage" },
-  { icon: PhoneCall, title: "Front desk", role: "AI Receptionist", copy: "Answers, schedules and hands over with context.", href: "/ai-employees/receptionist", tone: "blue" },
-  { icon: GraduationCap, title: "Admissions", role: "AI Admission Officer", copy: "Guides families from first question to campus visit.", href: "/ai-employees/admission-officer", tone: "sand" },
-  { icon: Headset, title: "Support", role: "AI Support Agent", copy: "Resolves repeat requests and structures escalations.", href: "/ai-employees/support-agent", tone: "grey" },
-];
+  {label:"SALES",title:"AI Sales Agent",copy:"Understands interest, qualifies the opportunity and keeps the next action moving.",boundary:"Commercial decisions follow your rules.",href:"/ai-employees/sales-agent",image:"/hbl-001-supreme-clinic-demo/assets/torvent-v2/role-sales.webp"},
+  {label:"FRONT DESK",title:"AI Receptionist",copy:"Handles multilingual enquiries, gathers context and coordinates permitted bookings.",boundary:"Uncertain requests move to human review.",href:"/ai-employees/receptionist",image:"/hbl-001-supreme-clinic-demo/assets/torvent-v2/role-reception.webp"},
+  {label:"ADMISSIONS",title:"AI Admission Officer",copy:"Guides families from first question to a complete, usable admission record.",boundary:"Eligibility exceptions remain with the team.",href:"/ai-employees/admission-officer",image:"/hbl-001-supreme-clinic-demo/assets/torvent-v2/role-admissions.webp"},
+  {label:"SUPPORT",title:"AI Support Agent",copy:"Resolves repeat requests from approved knowledge and structures every escalation.",boundary:"Low-confidence cases never disappear.",href:"/ai-employees/support-agent",image:"/hbl-001-supreme-clinic-demo/assets/torvent-v2/role-support.webp"},
+] as const;
 
-const industries = [
-  { icon: GraduationCap, title: "Education", copy: "Admissions without missed enquiries", href: "/industries/education" },
-  { icon: Heartbeat, title: "Healthcare", copy: "Access and administration, never diagnosis", href: "/industries/healthcare" },
-  { icon: Buildings, title: "Real Estate", copy: "Qualified interest to scheduled visits", href: "/industries/real-estate" },
-  { icon: Factory, title: "Manufacturing", copy: "Faster RFQ and service coordination", href: "/industries/manufacturing" },
-  { icon: Storefront, title: "Services", copy: "Bookings, reminders and follow-through", href: "/industries/service-businesses" },
-];
-
-export default function Home() { return <><Header/><main>
-  <section className="cinematic-hero" id="top">
-    <div className="cinematic-bg" aria-hidden="true"><Image src="/hbl-001-supreme-clinic-demo/torvent-logo.png" alt="" width="2172" height="724" className="hero-wordmark-field"/><div className="cinematic-veil"/><div className="cinematic-grain"/></div>
-    <div className="container cinematic-hero-layout">
-      <div className="cinematic-hero-copy">
-        <div className="cinematic-trust hero-anim" style={{"--hero-delay":".05s"} as React.CSSProperties}>
-          <div className="cinematic-trust-rings" aria-hidden="true"><span><ShieldCheck weight="duotone"/></span><span><Translate weight="duotone"/></span><span><UsersThree weight="duotone"/></span></div>
-          <p>Responsible AI, built around real work</p>
-        </div>
-        <h1 className="cinematic-headline"><span>Turn customer requests</span><TypewriterText text="into finished work."/></h1>
-        <p className="cinematic-lede hero-anim" style={{"--hero-delay":".3s"} as React.CSSProperties}>AI agents that answer, collect the right details, update your systems and bring people in when judgment matters.</p>
-        <div className="hero-actions-premium hero-anim" style={{"--hero-delay":".42s"} as React.CSSProperties}><Link className="cinematic-cta" href="/contact">Show Us Your Workflow <ArrowRight/></Link><Link className="cinematic-secondary-cta" href="#how-it-works">See How It Works</Link></div>
-        <div className="hero-assurance hero-anim" style={{"--hero-delay":".52s"} as React.CSSProperties}><span><ShieldCheck weight="fill"/> Local preview</span><span><UsersThree weight="fill"/> Human handoff</span><span><Translate weight="fill"/> ಕನ್ನಡ · English · हिंदी</span></div>
-      </div>
+export default function Home(){return <><Header/><main>
+  <section className="v2-hero" id="top">
+    <Image className="v2-hero-image" src="/hbl-001-supreme-clinic-demo/assets/torvent-v2/hero-field.webp" alt="" fill priority sizes="100vw"/>
+    <div className="v2-hero-shade" aria-hidden="true"/>
+    <div className="container v2-hero-inner">
+      <div className="v2-hero-badge"><ShieldCheck weight="duotone"/> Responsible AI. Real work.</div>
+      <h1>AI that works for your business.</h1>
+      <p>TORVENT designs AI roles that understand requests, use approved knowledge, take permitted actions and bring in your team when judgment matters.</p>
+      <Link className="v2-hero-cta" href="/contact">Show Us Your Workflow <ArrowRight/></Link>
+      <div className="v2-hero-languages"><span lang="kn">ಕನ್ನಡ</span><i/>English<i/><span lang="hi">हिंदी</span></div>
     </div>
+    <a className="v2-scroll-cue" href="#operating-model" aria-label="Continue to operating model"><span>Explore TORVENT</span><ArrowDown/></a>
   </section>
 
-  <section className="trust-strip"><div className="container">{[[ShieldCheck,"One workflow at a time","A clear owner and measurable outcome"],[CirclesFour,"Connects to existing tools","CRM, calendar, ERP, inbox and approved data"],[Translate,"ಕನ್ನಡ · English · हिंदी","Natural mixed-language conversations"],[Pulse,"Human review built in","Approvals, escalation and reviewable activity"]].map(([Icon,title,copy])=><div key={String(title)}><Icon weight="duotone"/><span><b>{String(title)}</b><small>{String(copy)}</small></span></div>)}</div></section>
+  <section className="v2-premise" id="operating-model"><div className="container v2-premise-grid">
+    <div><p className="section-kicker">THE OPERATING MODEL</p><h2>From request to accountable action.</h2></div>
+    <div className="v2-premise-copy"><p>TORVENT is built for complete workflows—not isolated answers. Every role has defined knowledge, permissions, actions and an escalation path.</p><div className="v2-principles">{[[BookOpenText,"Approved knowledge"],[ShieldCheck,"Permitted actions"],[UsersThree,"Human review"],[Pulse,"Visible history"]].map(([Icon,label])=><span key={String(label)}><Icon weight="duotone"/>{String(label)}</span>)}</div></div>
+  </div></section>
 
-  <section className="workflow-lab-section" id="how-it-works"><div className="container workflow-lab-intro"><p className="section-kicker">WORKFLOW STUDIO</p><h2>See one repeated task become a controlled AI workflow.</h2><p>Describe a process. The local preview maps how TORVENT could receive the request, use approved context, take a permitted action and hand exceptions to a person.</p></div><div className="container"><WorkflowPrompt/></div></section>
+  <section className="v2-roles" id="solutions"><div className="container">
+    <div className="v2-section-heading"><div><p className="section-kicker">AI ROLES</p><h2>One role. Clear responsibility.</h2></div><p>Each role owns a defined part of the work, stays within policy and makes exceptions visible to the accountable team.</p></div>
+    <div className="v2-role-grid">{agents.map(agent=><Link href={agent.href} className="v2-role-card" key={agent.title}><div className="v2-role-visual"><Image src={agent.image} alt="" fill sizes="(max-width: 760px) 100vw, 50vw"/></div><div className="v2-role-content"><small>{agent.label}</small><h3>{agent.title}</h3><p>{agent.copy}</p><span><ShieldCheck weight="duotone"/>{agent.boundary}</span><b>View role <ArrowRight/></b></div></Link>)}</div>
+  </div></section>
 
-  <section className="home-section employees-section" id="solutions"><div className="container"><div className="editorial-heading center-heading"><p className="section-kicker">AI ROLES</p><h2>One role. Clear responsibility.</h2><p>Each role owns a defined set of tasks, works from approved information and sends exceptions to a named person.</p></div><div className="agent-grid">{agents.map(({icon:Icon,title,role,copy,href,tone})=><Link href={href} className={`agent-card ${tone}`} key={role}><div><Icon weight="duotone"/><span>{title}</span></div><h3>{role}</h3><p>{copy}</p><b>View role <ArrowRight/></b></Link>)}</div></div></section>
+  <section className="v2-architecture" id="how-torvent-works"><div className="container">
+    <div className="v2-section-heading v2-heading-light"><div><p className="section-kicker">HOW TORVENT WORKS</p><h2>One connected path through your business.</h2></div><p>The agent connects conversation, knowledge and action while review and observability stay part of the same operating path.</p></div>
+    <div className="v2-architecture-map" aria-label="TORVENT operational AI architecture">
+      <div className="v2-arch-column v2-arch-channels"><small>01 · CUSTOMER & CHANNELS</small><div><span><WhatsappLogo/>WhatsApp</span><span><Microphone/>Voice</span><span><Globe/>Web</span><span><EnvelopeSimple/>Email</span></div></div>
+      <ArrowRight className="v2-arch-arrow"/>
+      <div className="v2-arch-column"><small>02 · UNDERSTANDING</small><b><Sparkle weight="duotone"/> Intent · Context · Entities</b><p>The request becomes structured and usable.</p></div>
+      <ArrowRight className="v2-arch-arrow"/>
+      <div className="v2-arch-core"><span>TORVENT AGENT</span><b>Knowledge & policy</b><p>Approved sources · rules · permissions</p><i><CirclesFour/> Orchestration</i></div>
+      <ArrowRight className="v2-arch-arrow"/>
+      <div className="v2-arch-column"><small>03 · TOOLS & ACTIONS</small><b><Wrench weight="duotone"/> CRM · Calendar · ERP</b><p>Permitted updates, bookings and messages.</p></div>
+      <ArrowRight className="v2-arch-arrow"/>
+      <div className="v2-arch-column"><small>04 · OUTCOME</small><b><CheckCircle weight="duotone"/> Work moves forward</b><p>Result, handoff and next step stay visible.</p></div>
+      <div className="v2-human-branch"><UserFocus weight="duotone"/><span><small>HUMAN REVIEW</small><b>Exceptions return with context</b></span></div>
+      <div className="v2-audit-rail"><Pulse weight="duotone"/><span><small>AUDIT & OBSERVABILITY</small><b>Requests · decisions · actions · outcomes</b></span></div>
+    </div>
+  </div></section>
 
-  <section className="architecture-section"><div className="container architecture-intro"><p className="section-kicker">HOW THE WORK MOVES</p><h2>From first message<br/>to completed next step.</h2><p>The system understands the request, uses approved context, takes a permitted action and records the outcome for your team.</p></div><div className="container architecture-stage"><div className="architecture-rail" aria-label="Connected AI workflow architecture">
-    <article><span><ChatsCircle/></span><small>01 · RECEIVE</small><b>A request arrives</b><p>Voice, WhatsApp, web, email or an internal queue.</p></article>
-    <article><span><Sparkle/></span><small>02 · UNDERSTAND</small><b>Context is applied</b><p>Approved knowledge, policy and the customer’s details.</p></article>
-    <article><span><CalendarCheck/></span><small>03 · ACT</small><b>A permitted step happens</b><p>Book, update, route, notify or prepare for approval.</p></article>
-    <article><span><CheckCircle/></span><small>04 · RECORD</small><b>The outcome stays visible</b><p>Actions, handoffs and exceptions remain reviewable.</p></article>
-  </div><div className="architecture-guard"><ShieldCheck weight="duotone"/><b>Control runs through every stage</b><span>Permissions</span><span>Thresholds</span><span>Approval</span><span>Escalation</span></div></div></section>
+  <section className="language-section v2-language"><div className="container language-grid"><div><p className="section-kicker blue-kicker">LANGUAGE INTELLIGENCE</p><h2>Built for how India actually speaks.</h2><p>People change language mid-sentence. TORVENT follows the meaning, preserves the context and keeps the next action clear.</p><Link href="/ai-voice-agents" className="text-link">Explore voice AI <ArrowRight/></Link></div><div className="conversation-stack"><div><small><span lang="kn">ಕನ್ನಡ</span> + English</small><span lang="kn">“ಅಡ್ಮಿಷನ್ ಯಾವಾಗ ಶುರುವಾಗುತ್ತದೆ?”</span></div><div><small>English</small>“Can I book a campus visit tomorrow?”</div><div><small>Mixed language</small><span>“Fees details WhatsApp <span lang="kn">ಮಾಡಿ</span>.”</span></div><p><Translate weight="fill"/> ಕನ್ನಡ · English · हिंदी with human review</p></div></div></section>
 
-  <section className="language-section"><div className="container language-grid"><div><p className="section-kicker blue-kicker">LANGUAGE INTELLIGENCE</p><h2>Built for how <span className="india-word">INDIA</span> actually speaks.</h2><p>People change language mid-sentence. The system should follow the meaning and keep the workflow clear.</p><Link href="/ai-voice-agents" className="text-link">Explore voice AI <ArrowRight/></Link></div><div className="conversation-stack"><div><small><span lang="kn">ಕನ್ನಡ</span> + English</small><span lang="kn">“ಅಡ್ಮಿಷನ್ ಯಾವಾಗ ಶುರುವಾಗುತ್ತದೆ?”</span></div><div><small>English</small>“Can I book a campus visit tomorrow?”</div><div><small>Mixed language</small><span>“Fees details WhatsApp <span lang="kn">ಮಾಡಿ</span>.”</span></div><p><CheckCircle weight="fill"/> Regional language workflows with human review</p></div></div></section>
+  <section className="home-section measure-section v2-measures"><div className="container measure-grid"><div><p className="section-kicker">OPERATIONAL MEASURES</p><h2>Measure the work. Not the hype.</h2><p>Every pilot starts with a baseline and a small set of useful measures. This sample view shows the operating signals we can design—not achieved customer results.</p><div className="v2-measure-tags"><span>Response time</span><span>Completion rate</span><span>Escalation quality</span><span>Action success</span></div></div><AnimatedMetrics/></div></section>
 
-  <section className="home-section measure-section"><div className="container measure-grid"><div><p className="section-kicker">OPERATIONAL PROOF</p><h2>See the work.<br/>Not the hype.</h2><p>Every pilot starts with a baseline and a small set of useful measures. The illustration shows the kind of operating view we design—not claimed customer results.</p><Link className="text-link" href="/case-studies">How evidence is reported <ArrowRight/></Link></div><AnimatedMetrics/></div></section>
+  <section className="v2-industries" id="industries"><div className="container"><div className="v2-section-heading"><div><p className="section-kicker">INDUSTRY WORKFLOWS</p><h2>Context changes everything.</h2></div><p>The same model should not behave the same way in a college, healthcare setting or factory. Explore how the operating path changes.</p></div><IndustrySelector/></div></section>
 
-  <section className="home-section process-section"><div className="container"><div className="editorial-heading center-heading"><p className="section-kicker">FROM PILOT TO PRODUCTION</p><h2>A careful path to useful AI.</h2></div><div className="process-track process-four">{[["01","Map","One workflow, its people, systems and risks."],["02","Prototype","A controlled version using approved knowledge."],["03","Integrate","Real tools, permissions and human handoffs."],["04","Improve","Measure, review and expand only when proven."]].map(([n,title,copy])=><article key={n}><span>{n}</span><h3>{title}</h3><p>{copy}</p></article>)}</div></div></section>
+  <section className="v2-trajectory" id="about"><div className="container"><p className="section-kicker">BUILT IN HUBBALLI · DESIGNED FOR GLOBAL SCALE</p><h2>Close to real work. Ready to travel.</h2><p>TORVENT starts from the operating realities of growing Indian teams and builds systems that can extend across locations, languages and markets.</p><ol>{[[MapPin,"Hubballi","Close to the workflow"],[CirclesFour,"Karnataka","Prove repeatable patterns"],[Translate,"India","Support multilingual operations"],[Globe,"Global Scale","Adapt with the same discipline"]].map(([Icon,place,copy],index)=><li key={String(place)}><span>0{index+1}</span><Icon weight="duotone"/><b>{String(place)}</b><small>{String(copy)}</small></li>)}</ol></div></section>
 
-  <section className="home-section industries-section" id="industries"><div className="container"><div className="editorial-heading row-heading"><div><p className="section-kicker">INDUSTRY WORKFLOWS</p><h2>Context changes<br/>everything.</h2></div><p>The same model should not behave the same way in a college, clinic or factory. We design around the decisions each team owns.</p></div><div className="industry-list">{industries.map(({icon:Icon,title,copy,href},i)=><Link href={href} key={title}><span>0{i+1}</span><Icon/><b>{title}</b><small>{copy}</small><ArrowRight/></Link>)}</div></div></section>
-
-  <section className="vision-section" id="about"><div className="container vision-grid"><div><p className="section-kicker mint">BUILT IN HUBBALLI · DESIGNED TO SCALE</p><h2>Close to the work.<br/>Ready for wider operations.</h2><p>Hubballi gives us proximity to growing businesses, real operating constraints and multilingual customers. Every implementation is designed so the same discipline can extend across Karnataka, India and international teams.</p><Link className="text-link light-link" href="/locations/hubli">Why Hubballi matters <ArrowRight/></Link></div><div className="vision-board"><header><span>GROWTH DIRECTION</span><em>Built step by step</em></header>{[[MapPin,"ORIGIN","Hubballi","Co-design with local operating teams"],[Handshake,"REGIONAL PATTERN","Karnataka","Repeat proven workflows across branches"],[Buildings,"NATIONAL SCALE","INDIA","Support multilingual, multi-location operations"],[Sparkle,"GLOBAL READINESS","Beyond India","Adapt proven systems to new markets"]].map(([Icon,phase,place,copy],i)=><article className={`vision-place-${String(place).toLowerCase().replace(" ","-")}`} style={{"--vision-step":i} as React.CSSProperties} key={String(phase)}><Icon weight="duotone"/><span><small>{String(phase)}</small><b>{place==="INDIA"?<span className="india-word">INDIA</span>:String(place)}</b><p>{String(copy)}</p></span></article>)}</div></div></section>
-
-  <section className="home-section trust-section"><div className="container"><div className="editorial-heading center-heading"><p className="section-kicker">BUILT FOR ACCOUNTABILITY</p><h2>Clear boundaries. Visible actions. Human ownership.</h2><p>Before launch, we define what the system can access, which actions it may take, when it must stop and who reviews exceptions.</p></div><div className="trust-card-grid">{[[ShieldCheck,"Approved knowledge","Answers come from information your team owns and reviews."],[CirclesFour,"Role-based permissions","The system accesses only the tools and actions required for its job."],[UsersThree,"Human escalation","Sensitive, uncertain and exceptional cases move to a named owner."],[Pulse,"Reviewable history","Conversations, actions, handoffs and failures remain visible for improvement."]].map(([Icon,title,copy])=><article key={String(title)}><Icon weight="duotone"/><h3>{String(title)}</h3><p>{String(copy)}</p></article>)}</div></div></section>
+  <section className="v2-boundaries"><div className="container"><div className="v2-section-heading"><div><p className="section-kicker">BUILT FOR ACCOUNTABILITY</p><h2>AI with clear boundaries.</h2></div><p>Useful automation starts with explicit rules for what the system knows, what it may do and when the accountable team must take over.</p></div><div className="v2-boundary-rail">{[[BookOpenText,"Knowledge","Approved sources"],[ShieldCheck,"Permissions","Role-based access"],[CalendarCheck,"Actions","Permitted steps"],[UsersThree,"Escalation","Human review"],[Pulse,"History","Reviewable activity"]].map(([Icon,title,copy],index)=><article key={String(title)}><span>0{index+1}</span><Icon weight="duotone"/><h3>{String(title)}</h3><p>{String(copy)}</p></article>)}</div></div></section>
   <CTA/>
-  </main><Footer/></> }
+  </main><Footer/></>}
