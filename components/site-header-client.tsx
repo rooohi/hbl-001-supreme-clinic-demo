@@ -1,8 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { ArrowRight, CaretDown, WhatsappLogo } from "@phosphor-icons/react";
+import { ArrowRight, CaretDown, List, WhatsappLogo, X } from "@phosphor-icons/react";
 import { company } from "@/config/company";
 
 const navigation = [
@@ -16,6 +18,33 @@ function isCurrent(pathname:string,href:string){return pathname===href||pathname
 
 export function SiteHeader(){
   const pathname=usePathname();
+  const isHome=pathname==="/";
+  const [homeMenuOpen,setHomeMenuOpen]=useState(false);
+
+  useEffect(()=>{
+    if(!homeMenuOpen)return;
+    const onKey=(event:KeyboardEvent)=>{if(event.key==="Escape")setHomeMenuOpen(false)};
+    const onResize=()=>{if(window.innerWidth>760)setHomeMenuOpen(false)};
+    document.body.classList.add("cinematic-menu-open");
+    window.addEventListener("keydown",onKey);
+    window.addEventListener("resize",onResize);
+    return()=>{document.body.classList.remove("cinematic-menu-open");window.removeEventListener("keydown",onKey);window.removeEventListener("resize",onResize)};
+  },[homeMenuOpen]);
+
+  if(isHome)return <><a className="skip-link" href="#main-content">Skip to content</a><header className="site-header cinematic-header"><div className="cinematic-nav-wrap">
+    <Link className="cinematic-logo" href="/" aria-label={`${company.displayName} home`}><Image src="/hbl-001-supreme-clinic-demo/favicon.svg" alt="" width="52" height="52" priority/></Link>
+    <nav aria-label="Primary navigation" className="cinematic-nav-pill">
+      <Link className="active" href="/" aria-current="page">Home</Link>
+      <Link href="/ai-agents">AI systems</Link>
+      <Link href="/case-studies">Workflows</Link>
+      <Link href="/contact">Contact</Link>
+    </nav>
+    <Link className="cinematic-nav-cta" href="/contact">Show us one workflow <ArrowRight/></Link>
+    <button className={`cinematic-menu-button ${homeMenuOpen?"open":""}`} type="button" aria-label={homeMenuOpen?"Close navigation":"Open navigation"} aria-expanded={homeMenuOpen} onClick={()=>setHomeMenuOpen(value=>!value)}>{homeMenuOpen?<X/>:<List/>}</button>
+  </div></header>{homeMenuOpen&&<div className="cinematic-menu-layer"><button className="cinematic-menu-backdrop" type="button" aria-label="Close navigation" onClick={()=>setHomeMenuOpen(false)}/><nav className="cinematic-menu-sheet" aria-label="Mobile navigation">
+    <Link className="active" href="/" aria-current="page" onClick={()=>setHomeMenuOpen(false)}>Home</Link><Link href="/ai-agents" onClick={()=>setHomeMenuOpen(false)}>AI systems</Link><Link href="/case-studies" onClick={()=>setHomeMenuOpen(false)}>Workflow library</Link><Link href="/about" onClick={()=>setHomeMenuOpen(false)}>About</Link><Link href="/contact" onClick={()=>setHomeMenuOpen(false)}>Contact</Link><Link className="cinematic-menu-cta" href="/contact" onClick={()=>setHomeMenuOpen(false)}>Show us one workflow <ArrowRight/></Link>
+  </nav></div>}<span className="skip-target" id="main-content" tabIndex={-1}/></>;
+
   return <><a className="skip-link" href="#main-content">Skip to content</a><header className="site-header"><div className="container nav-inner">
     <Link className="wordmark" href="/" aria-label={`${company.displayName} home`}><span className="brand-glyph">AI</span><span>{company.displayName}</span></Link>
     <nav aria-label="Primary navigation" className="desktop-navigation">{navigation.map(group=>{
