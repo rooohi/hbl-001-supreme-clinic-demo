@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowRight, Buildings, CalendarCheck, ChartLineUp, CheckCircle, ChatsCircle, CirclesFour, Factory, GraduationCap, Handshake, Headset, Heartbeat, MapPin, PhoneCall, Pulse, ShieldCheck, Sparkle, Storefront, Translate, UsersThree } from "@phosphor-icons/react/dist/ssr";
 import { AnimatedMetrics } from "@/components/animated-metrics";
 import { CTA, Footer, Header } from "@/components/site-shell";
-import { TypewriterText, WorkflowPrompt } from "@/components/workflow-prompt";
+import { TypewriterText } from "@/components/workflow-prompt";
 
 const agents = [
   { icon: ChartLineUp, title: "Sales", role: "AI Sales Agent", copy: "Qualifies interest and keeps every good lead moving.", href: "/ai-employees/sales-agent", tone: "sage" },
@@ -30,12 +30,8 @@ export default function Home() { return <><Header/><main>
         </div>
         <h1 className="cinematic-headline"><span>Turn customer requests</span><TypewriterText text="into finished work."/></h1>
         <p className="cinematic-lede hero-anim" style={{"--hero-delay":".3s"} as React.CSSProperties}>AI agents that answer, collect the right details, update your systems and bring people in when judgment matters.</p>
-        <a className="cinematic-cta hero-anim" style={{"--hero-delay":".42s"} as React.CSSProperties} href="#workflow-prompt">Show us one workflow <ArrowRight/></a>
+        <Link className="cinematic-cta hero-anim" style={{"--hero-delay":".42s"} as React.CSSProperties} href="/contact">Show us one workflow <ArrowRight/></Link>
         <div className="hero-assurance hero-anim" style={{"--hero-delay":".52s"} as React.CSSProperties}><span><ShieldCheck weight="fill"/> Local preview</span><span><UsersThree weight="fill"/> Human handoff</span><span><Translate weight="fill"/> ಕನ್ನಡ · English · हिंदी</span></div>
-      </div>
-      <div className="hero-chat-panel hero-anim" style={{"--hero-delay":".22s"} as React.CSSProperties}>
-        <header><span><Sparkle weight="fill"/></span><div><b>Workflow guide</b><small>Map a practical first use case</small></div><em><i/> LIVE PREVIEW</em></header>
-        <WorkflowPrompt variant="hero"/>
       </div>
     </div>
   </section>
