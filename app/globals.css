@@ -332,7 +332,7 @@ body{overflow-x:clip}.skip-link{position:fixed;z-index:100;top:10px;left:10px;tr
 @media(prefers-reduced-motion:reduce){.cinematic-video{display:none}.hero-anim,.cinematic-headline span{animation:none!important;opacity:1!important;filter:none!important;transform:none!important}}
 
 /* Centered hero and enlarged TORVENT identity */
-.brand-logo-chip img{transform:scaleY(2.05);transform-origin:center}
+.brand-logo-chip img{transform:none;object-fit:cover}
 .cinematic-nav-wrap{width:min(900px,calc(100% - 32px))}
 .cinematic-logo{width:238px;height:54px;flex-basis:238px;padding:8px 15px}
 .cinematic-hero-layout{width:min(960px,calc(100% - 48px));grid-template-columns:1fr;justify-items:center;gap:0}
