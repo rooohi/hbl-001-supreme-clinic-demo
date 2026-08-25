@@ -6,7 +6,7 @@ export const company = {
   legalName: "TORVENT",
   domain: "https://rooohi.github.io/hbl-001-supreme-clinic-demo",
   email: "",
-  formEndpoint: process.env.NEXT_PUBLIC_CONTACT_FORM_ENDPOINT ?? "",
+  whatsappNumber: "917353260596",
   businessHours: "Monday–Friday · 9:00 AM–5:00 PM IST",
   address: "Hubballi, Karnataka",
   city: "Hubballi",

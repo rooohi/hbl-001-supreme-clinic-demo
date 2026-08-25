@@ -9,10 +9,11 @@ export function HeroTypewriter() {
 
   useEffect(() => {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const visitKey = "torvent.hero-typewriter-complete.v1";
     let timer = 0;
     let cancelled = false;
 
-    if (reduceMotion) {
+    if (reduceMotion || window.sessionStorage.getItem(visitKey) === "true") {
       timer = window.setTimeout(() => setLength(sentence.length), 0);
       return () => window.clearTimeout(timer);
     }
@@ -21,23 +22,13 @@ export function HeroTypewriter() {
       if (cancelled) return;
       setLength(next);
       if (next < sentence.length) {
-        timer = window.setTimeout(() => type(next + 1), 48);
+        timer = window.setTimeout(() => type(next + 1), 54);
         return;
       }
-      timer = window.setTimeout(() => erase(sentence.length - 1), 1650);
+      window.sessionStorage.setItem(visitKey, "true");
     };
 
-    const erase = (next: number) => {
-      if (cancelled) return;
-      setLength(next);
-      if (next > 0) {
-        timer = window.setTimeout(() => erase(next - 1), 28);
-        return;
-      }
-      timer = window.setTimeout(() => type(1), 520);
-    };
-
-    timer = window.setTimeout(() => type(1), 260);
+    timer = window.setTimeout(() => type(1), 240);
     return () => {
       cancelled = true;
       window.clearTimeout(timer);

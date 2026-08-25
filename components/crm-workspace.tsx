@@ -4,7 +4,8 @@ import { ChangeEvent, FormEvent, useEffect, useMemo, useRef, useState } from "re
 import { ArrowLeft, CalendarCheck, CheckCircle, DownloadSimple, Funnel, MagnifyingGlass, Plus, UploadSimple, WhatsappLogo } from "@phosphor-icons/react";
 import Link from "next/link";
 
-const storageKey="aiautomationhubballi.crm.v1";
+const storageKey="torvent.crm.v1";
+const legacyStorageKey="aiautomationhubballi.crm.v1";
 const stages=["New","Contacted","Qualified","Proposal","Won","Not a fit"] as const;
 type Stage=(typeof stages)[number];
 type Lead={id:string;name:string;business:string;phone:string;workflow:string;stage:Stage;followUp:string;notes:string;createdAt:string};
@@ -27,7 +28,7 @@ export function CrmWorkspace(){
   useEffect(()=>{
     const frame=window.requestAnimationFrame(()=>{
       try{
-        const stored=window.localStorage.getItem(storageKey);
+        const stored=window.localStorage.getItem(storageKey)??window.localStorage.getItem(legacyStorageKey);
         if(stored){
           const parsed:unknown=JSON.parse(stored);
           if(Array.isArray(parsed))setLeads(parsed.filter(isLead));
@@ -80,7 +81,7 @@ export function CrmWorkspace(){
     const url=URL.createObjectURL(blob);
     const anchor=document.createElement("a");
     anchor.href=url;
-    anchor.download=`ai-automation-hubballi-leads-${new Date().toISOString().slice(0,10)}.json`;
+    anchor.download=`torvent-leads-${new Date().toISOString().slice(0,10)}.json`;
     anchor.click();
     URL.revokeObjectURL(url);
     setNotice("Encrypted storage is not added to exports. Keep the downloaded file private.");

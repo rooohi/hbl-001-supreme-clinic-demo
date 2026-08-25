@@ -48,9 +48,11 @@ test("exports every primary conversion route", async () => {
   await Promise.all(routes.map((route) => access(new URL(route, outputRoot))));
   const contact = await output("contact/index.html");
   assert.match(contact, /Show us where the work slows down/);
-  assert.match(contact, /Business enquiries are being configured/);
+  assert.match(contact, /Continue on WhatsApp/);
+  assert.match(contact, /Review it before sending/);
+  assert.doesNotMatch(contact, /Business enquiries are being configured/);
+  assert.doesNotMatch(contact, /Launch TODO/);
   assert.doesNotMatch(contact, /73532 60596/);
-  assert.doesNotMatch(contact, /wa\.me/);
 
   const about = await output("about/index.html");
   assert.match(about, /Operational AI with responsibility built in/);

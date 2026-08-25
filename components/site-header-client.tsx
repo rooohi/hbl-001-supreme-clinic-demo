@@ -47,7 +47,7 @@ export function SiteHeader(){
             const active=group.links.some(([,href])=>isCurrent(pathname,href));
             const expanded=openGroup===group.label;
             return <div className="v2-nav-group" key={group.label} onMouseEnter={()=>open(group.label)} onMouseLeave={delayedClose} onFocus={()=>open(group.label)} onBlur={event=>{if(!event.currentTarget.contains(event.relatedTarget as Node))delayedClose();}}>
-              <button className={active?"nav-active":undefined} type="button" aria-expanded={expanded} aria-controls={`menu-${group.label}`} onClick={()=>setOpenGroup(expanded?null:group.label)}>{group.label}<CaretDown/></button>
+              <button className={active?"nav-active":undefined} type="button" aria-expanded={expanded} aria-controls={`menu-${group.label}`} onClick={()=>open(group.label)}>{group.label}<CaretDown/></button>
               <div className="v2-nav-panel" id={`menu-${group.label}`} hidden={!expanded}>{group.links.map(([label,href])=><Link href={href} onClick={closeNavigation} key={href} aria-current={isCurrent(pathname,href)?"page":undefined}>{label}<ArrowRight/></Link>)}</div>
             </div>;
           })}
@@ -56,7 +56,7 @@ export function SiteHeader(){
             const active=group.links.some(([,href])=>isCurrent(pathname,href));
             const expanded=openGroup===group.label;
             return <div className="v2-nav-group" key={group.label} onMouseEnter={()=>open(group.label)} onMouseLeave={delayedClose} onFocus={()=>open(group.label)} onBlur={event=>{if(!event.currentTarget.contains(event.relatedTarget as Node))delayedClose();}}>
-              <button className={active?"nav-active":undefined} type="button" aria-expanded={expanded} aria-controls={`menu-${group.label}`} onClick={()=>setOpenGroup(expanded?null:group.label)}>{group.label}<CaretDown/></button>
+              <button className={active?"nav-active":undefined} type="button" aria-expanded={expanded} aria-controls={`menu-${group.label}`} onClick={()=>open(group.label)}>{group.label}<CaretDown/></button>
               <div className="v2-nav-panel v2-nav-panel-right" id={`menu-${group.label}`} hidden={!expanded}>{group.links.map(([label,href])=><Link href={href} onClick={closeNavigation} key={href} aria-current={isCurrent(pathname,href)?"page":undefined}>{label}<ArrowRight/></Link>)}</div>
             </div>;
           })}

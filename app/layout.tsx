@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   keywords: ["operational AI Hubballi","AI agents India","WhatsApp automation","Kannada voice AI","business process automation"],
   authors: [{ name: company.displayName }],
   creator: company.displayName,
-  openGraph: { title: `${company.displayName} | AI That Works for Your Business`, description: company.description, images: [`${company.domain}/og.png`] },
+  openGraph: { type:"website", locale:"en_IN", siteName:company.displayName, title: `${company.displayName} | AI That Works for Your Business`, description: company.description, images: [`${company.domain}/og.png`] },
   twitter: { card: "summary_large_image", title: "AI that works for your business.", description: "Operational AI systems, built in Hubballi and designed for global scale.", images: [`${company.domain}/og.png`] },
   icons: {
     icon: "/hbl-001-supreme-clinic-demo/favicon.svg",
@@ -32,7 +32,7 @@ export default function RootLayout({
         "@type":["Organization","ProfessionalService"],
         name:company.displayName,
         url:company.domain,
-        logo:`${company.domain}/favicon.svg`,
+        logo:`${company.domain}/torvent-logo.png`,
         image:`${company.domain}/og.png`,
         address:{"@type":"PostalAddress",addressLocality:company.city,addressRegion:company.state,addressCountry:"IN"},
         areaServed:[{"@type":"City",name:"Hubballi"},{"@type":"AdministrativeArea",name:"Karnataka"},{"@type":"Country",name:"India"}],
