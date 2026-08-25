@@ -1,58 +1,63 @@
-# TORVENT V2 Design QA
+# TORVENT Refinement — Design QA
 
 ## Visual truth
 
-- Selected concept: `C:\Users\sunid\.codex\generated_images\01a029f4-cf08-7441-b9f3-8987f399fc3b\exec-8d70aae5-5d2c-4197-b66d-f138dd349be9.png`
-- User refinements applied: no architecture diagram in the hero; exactly one hero CTA.
-- Desktop implementation: `C:\Users\sunid\.codex\visualizations\2026\08\22\01a029f4-cf08-7441-b9f3-8987f399fc3b\torvent-qa-v2\implementation-desktop-v2.png`
-- Full-page implementation: `C:\Users\sunid\.codex\visualizations\2026\08\22\01a029f4-cf08-7441-b9f3-8987f399fc3b\torvent-qa-v2\implementation-full-desktop-final.png`
-- Mobile implementation: `C:\Users\sunid\.codex\visualizations\2026\08\22\01a029f4-cf08-7441-b9f3-8987f399fc3b\torvent-qa-v2\implementation-mobile-390.png`
-- Side-by-side comparison: `C:\Users\sunid\.codex\visualizations\2026\08\22\01a029f4-cf08-7441-b9f3-8987f399fc3b\torvent-qa-v2\comparison-desktop.png`
+- Source specification: `C:\Users\sunid\.codex\attachments\ea5e06ae-2882-4d0d-824d-5c5cc44f1433\pasted-text.txt`
+- Source visual capture: `C:\Users\sunid\.codex\visualizations\2026\08\22\01a029f4-cf08-7441-b9f3-8987f399fc3b\torvent-refinement\01-before-hero.png`
+- Source full-page capture: `C:\Users\sunid\.codex\visualizations\2026\08\22\01a029f4-cf08-7441-b9f3-8987f399fc3b\torvent-refinement\02-before-full.png`
+- Refined implementation capture: `C:\Users\sunid\.codex\visualizations\2026\08\22\01a029f4-cf08-7441-b9f3-8987f399fc3b\torvent-refinement\03-after-hero.png`
+- Refined full-page capture: `C:\Users\sunid\.codex\visualizations\2026\08\22\01a029f4-cf08-7441-b9f3-8987f399fc3b\torvent-refinement\04-after-full.png`
 
-## Capture conditions
+## Normalization
 
-- Desktop implementation viewport: 1440 x 1024, device scale factor 1.
-- Mobile implementation viewport: 390 x 844, device scale factor 1.
-- Reference artwork: 1536 x 1024, compared at matched aspect and crop.
-- QA included focused hero views, full-page review, mobile navigation, content interactions, CTA navigation, and browser-console inspection.
+- Source hero pixels: 1425 x 1024.
+- Implementation hero pixels: 1425 x 1024.
+- CSS viewport: 1440 x 1024; browser content width is 1425px after the native scrollbar.
+- Device scale factor: 1.
+- State: homepage, dark hero, navigation closed, headline fully revealed.
+- Full-page source pixels: 1425 x 7838.
+- Full-page implementation pixels: 1425 x 7169; the height reduction is intentional because the requested How TORVENT Works section was removed.
+
+## Comparison evidence
+
+- Full hero comparison: `C:\Users\sunid\.codex\visualizations\2026\08\22\01a029f4-cf08-7441-b9f3-8987f399fc3b\torvent-refinement\09-comparison-hero.png`
+- Focused role-card and section-flow comparison: `C:\Users\sunid\.codex\visualizations\2026\08\22\01a029f4-cf08-7441-b9f3-8987f399fc3b\torvent-refinement\10-comparison-roles.png`
+- Mobile evidence: `C:\Users\sunid\.codex\visualizations\2026\08\22\01a029f4-cf08-7441-b9f3-8987f399fc3b\torvent-refinement\05-after-mobile-375.png`
+- Tablet post-fix evidence: `C:\Users\sunid\.codex\visualizations\2026\08\22\01a029f4-cf08-7441-b9f3-8987f399fc3b\torvent-refinement\06-after-tablet-768-fixed.png`
+- Wide-desktop evidence: `C:\Users\sunid\.codex\visualizations\2026\08\22\01a029f4-cf08-7441-b9f3-8987f399fc3b\torvent-refinement\07-after-desktop-1920.png`
+- Mobile-menu evidence: `C:\Users\sunid\.codex\visualizations\2026\08\22\01a029f4-cf08-7441-b9f3-8987f399fc3b\torvent-refinement\08-mobile-menu-contact-only.png`
+
+## Required fidelity surfaces
+
+- Typography: Manrope and the existing language fallbacks remain intact. Headline wrapping is balanced, small labels and footer copy are larger, body copy stays at readable line heights, and no cursor appears during typing.
+- Spacing and layout: the header is vertically centered at 80px on desktop, the logo has consistent outer and inner clear space, role cards use an even 2 x 2 grid, and the removed section leaves no gap.
+- Color and tokens: the established forest, white, mint, blue-grey, and pastel surfaces are preserved. The new role cards use restrained graphite-green surfaces and one mint icon accent.
+- Image quality: the approved hero asset and supplied TORVENT logo remain proportional and unaltered. The four requested abstract role images were removed rather than hidden; role visuals now use one consistent Phosphor icon family.
+- Copy and content: no sections or marketing claims were added. Navigation now says Contact Us; Show Us Your Workflow remains only in page conversion content where the brief permits it.
+- Accessibility: meaningful headings and links remain semantic; card icons are marked decorative; dropdowns and mobile navigation remain keyboard-operable; Escape closes navigation; reduced motion shows the full headline immediately.
 
 ## Comparison history
 
-### Pass 1 — P1 fixed
+### Pass 1 — P2 fixed
 
-The legacy global header styles forced a light sticky bar and displaced the hero. V2 header rules now deliberately override the legacy values, keep the header over the hero, and preserve the independent glass groups.
+- Finding: at the 768px tablet viewport, the typewriter live layer retained desktop `white-space: nowrap`, so the headline clipped at the right edge even though the reserved layer wrapped.
+- Fix: both typewriter layers now share the same balanced wrapping and grid area below 1180px.
+- Post-fix evidence: the 768px screenshot shows a balanced two-line headline, matching live/reserved bounds, and no horizontal overflow.
 
-### Pass 2 — P2 fixed
+### Final pass
 
-The illustrative performance panel initially showed zero values during full-page capture because its animation had not intersected the viewport. Static values now render meaningfully, then animate from zero when the section enters view.
+- No actionable P0, P1, or P2 visual issues remain.
+- No residual horizontal overflow was found at 320, 375, 430, 768, 1024, 1280, 1440, or 1920px.
+- The focused comparison confirms the requested switch from image-led cards to icon-led cards and the direct transition from AI Roles to Language Intelligence after section removal.
 
-### Final visual review
+## Primary interactions tested
 
-- Hero hierarchy is centralized, calm, and legible.
-- Only one hero CTA is present.
-- No chat window or architecture diagram appears in the hero.
-- The TORVENT mark is large, proportional, and not stretched.
-- The glass navigation remains visually separate from the logo and CTA.
-- Generated role imagery uses a consistent abstract treatment instead of stock photography.
-- Architecture, industry, language, trust, and trajectory sections have distinct information roles.
-- Mobile hero and navigation fit without crowding or clipping.
-- No P0, P1, or P2 visual issues remain.
-
-## Interaction and accessibility checks
-
-- Desktop navigation dropdown opens by keyboard and exposes `aria-expanded` correctly.
-- Mobile menu and grouped accordions open successfully.
-- Industry selector updates its contextual preview.
-- Primary CTA reaches the Contact page.
-- Focus states, semantic headings, reduced-motion handling, and responsive breakpoints are present.
-- Homepage and Contact page produced no browser console warnings or errors during QA.
-
-## Content and integrity checks
-
-- Public founder identity and personal phone number are absent from production source.
-- No invented customer logos, certifications, case-study outcomes, or performance promises were added.
-- Contact functionality is explicitly marked as being configured until an official endpoint is available.
-- Illustrative metrics are labeled as examples rather than customer results.
+- Typewriter progresses from partial to complete text, has no cursor, remains static after completion, and does not replay on the same session visit.
+- Desktop Solutions dropdown opens by keyboard, exposes its links, and closes with Escape.
+- Mobile menu opens and contains one Contact Us CTA with no workflow CTA.
+- Industry selector changes to Healthcare and exposes the matching tab panel.
+- Browser console errors and warnings: none.
+- Production build, TypeScript, lint, and rendered HTML tests: passed.
 
 ## Final result
 

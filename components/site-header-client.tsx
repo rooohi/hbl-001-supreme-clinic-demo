@@ -61,11 +61,11 @@ export function SiteHeader(){
             </div>;
           })}
         </nav>
-        <Link className="header-primary-cta" href="/contact" onClick={closeNavigation}>Show Us Your Workflow <ArrowRight/></Link>
+        <Link className="header-primary-cta" href="/contact" onClick={closeNavigation}>Contact Us <ArrowRight/></Link>
         <button className="v2-mobile-trigger" type="button" aria-expanded={mobileOpen} aria-controls="mobile-navigation" aria-label={mobileOpen?"Close navigation":"Open navigation"} onClick={()=>setMobileOpen(value=>!value)}>{mobileOpen?<X/>:<List/>}</button>
       </div>
       <nav id="mobile-navigation" className="v2-mobile-nav" aria-label="Mobile navigation" hidden={!mobileOpen}>
-        <Link className="mobile-menu-cta" href="/contact" onClick={closeNavigation}>Show Us Your Workflow <ArrowRight/></Link>
+        <Link className="mobile-menu-cta" href="/contact" onClick={closeNavigation}>Contact Us <ArrowRight/></Link>
         <Link className="mobile-insights-link" href="/insights" onClick={closeNavigation}>Insights</Link>
         {navigation.map(group=><details key={group.label}><summary>{group.label}<CaretDown/></summary><div>{group.links.map(([label,href])=><Link href={href} onClick={closeNavigation} key={href} aria-current={isCurrent(pathname,href)?"page":undefined}>{label}</Link>)}</div></details>)}
       </nav>
