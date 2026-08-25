@@ -1,64 +1,48 @@
-# TORVENT Refinement — Design QA
+# TORVENT logo and typewriter QA
 
-## Visual truth
+## Comparison target
 
-- Source specification: `C:\Users\sunid\.codex\attachments\ea5e06ae-2882-4d0d-824d-5c5cc44f1433\pasted-text.txt`
-- Source visual capture: `C:\Users\sunid\.codex\visualizations\2026\08\22\01a029f4-cf08-7441-b9f3-8987f399fc3b\torvent-refinement\01-before-hero.png`
-- Source full-page capture: `C:\Users\sunid\.codex\visualizations\2026\08\22\01a029f4-cf08-7441-b9f3-8987f399fc3b\torvent-refinement\02-before-full.png`
-- Refined implementation capture: `C:\Users\sunid\.codex\visualizations\2026\08\22\01a029f4-cf08-7441-b9f3-8987f399fc3b\torvent-refinement\03-after-hero.png`
-- Refined full-page capture: `C:\Users\sunid\.codex\visualizations\2026\08\22\01a029f4-cf08-7441-b9f3-8987f399fc3b\torvent-refinement\04-after-full.png`
+- Source visual truth: `C:\Users\sunid\OneDrive\Pictures\Screenshots\Screenshot 2026-08-25 213743.png`
+- Browser-rendered implementation: `C:\Users\sunid\.codex\visualizations\2026\08\22\01a029f4-cf08-7441-b9f3-8987f399fc3b\torvent-refinement\13-loop-logo-final.png`
+- Focused implementation crop: `C:\Users\sunid\.codex\visualizations\2026\08\22\01a029f4-cf08-7441-b9f3-8987f399fc3b\torvent-refinement\12-logo-after.png`
+- Side-by-side comparison: `C:\Users\sunid\.codex\visualizations\2026\08\22\01a029f4-cf08-7441-b9f3-8987f399fc3b\torvent-refinement\14-logo-comparison.png`
+- Route and state: homepage, dark hero, fixed header, typewriter active.
+- CSS viewport: 1280 × 720 at device scale factor 1.
+- Full implementation pixels: 1265 × 712. Browser scrollbar/chrome accounts for the difference from the requested viewport.
+- Source crop pixels: 238 × 80.
+- Focused implementation crop pixels: 238 × 80.
+- Density normalization: none required; both focused crops are 1× and equal-sized.
 
-## Normalization
+## Findings
 
-- Source hero pixels: 1425 x 1024.
-- Implementation hero pixels: 1425 x 1024.
-- CSS viewport: 1440 x 1024; browser content width is 1425px after the native scrollbar.
-- Device scale factor: 1.
-- State: homepage, dark hero, navigation closed, headline fully revealed.
-- Full-page source pixels: 1425 x 7838.
-- Full-page implementation pixels: 1425 x 7169; the height reduction is intentional because the requested How TORVENT Works section was removed.
-
-## Comparison evidence
-
-- Full hero comparison: `C:\Users\sunid\.codex\visualizations\2026\08\22\01a029f4-cf08-7441-b9f3-8987f399fc3b\torvent-refinement\09-comparison-hero.png`
-- Focused role-card and section-flow comparison: `C:\Users\sunid\.codex\visualizations\2026\08\22\01a029f4-cf08-7441-b9f3-8987f399fc3b\torvent-refinement\10-comparison-roles.png`
-- Mobile evidence: `C:\Users\sunid\.codex\visualizations\2026\08\22\01a029f4-cf08-7441-b9f3-8987f399fc3b\torvent-refinement\05-after-mobile-375.png`
-- Tablet post-fix evidence: `C:\Users\sunid\.codex\visualizations\2026\08\22\01a029f4-cf08-7441-b9f3-8987f399fc3b\torvent-refinement\06-after-tablet-768-fixed.png`
-- Wide-desktop evidence: `C:\Users\sunid\.codex\visualizations\2026\08\22\01a029f4-cf08-7441-b9f3-8987f399fc3b\torvent-refinement\07-after-desktop-1920.png`
-- Mobile-menu evidence: `C:\Users\sunid\.codex\visualizations\2026\08\22\01a029f4-cf08-7441-b9f3-8987f399fc3b\torvent-refinement\08-mobile-menu-contact-only.png`
+- No actionable P0, P1 or P2 issues remain.
+- Logo placement: the earlier image transform enlarged the wordmark beyond its white chip and caused clipping. The final wordmark is proportional, horizontally and vertically centered, and has consistent clearspace.
+- Header placement: the earlier route animation applied a temporary 12px transform to the fixed-header containing block. The final route transition is opacity-only; measured header position is x 0, y 0.
+- Responsive placement: desktop brand is 200 × 60 with a centered 168 × 56 image. At 375px viewport, the chip is 164 × 52 with a centered 136 × 45.33 image and no horizontal overflow.
+- Typewriter loop: sampled over seven seconds and observed full text, erase to zero characters, and a new typing cycle. No cursor is rendered.
+- Reduced motion: visitors with `prefers-reduced-motion: reduce` receive the complete static sentence.
 
 ## Required fidelity surfaces
 
-- Typography: Manrope and the existing language fallbacks remain intact. Headline wrapping is balanced, small labels and footer copy are larger, body copy stays at readable line heights, and no cursor appears during typing.
-- Spacing and layout: the header is vertically centered at 80px on desktop, the logo has consistent outer and inner clear space, role cards use an even 2 x 2 grid, and the removed section leaves no gap.
-- Color and tokens: the established forest, white, mint, blue-grey, and pastel surfaces are preserved. The new role cards use restrained graphite-green surfaces and one mint icon accent.
-- Image quality: the approved hero asset and supplied TORVENT logo remain proportional and unaltered. The four requested abstract role images were removed rather than hidden; role visuals now use one consistent Phosphor icon family.
-- Copy and content: no sections or marketing claims were added. Navigation now says Contact Us; Show Us Your Workflow remains only in page conversion content where the brief permits it.
-- Accessibility: meaningful headings and links remain semantic; card icons are marked decorative; dropdowns and mobile navigation remain keyboard-operable; Escape closes navigation; reduced motion shows the full headline immediately.
+- Fonts and typography: unchanged from the approved TORVENT system; headline reserve layer prevents layout shift while the visible text changes.
+- Spacing and layout rhythm: logo clearspace is balanced; the fixed header begins at y 0 and its 80px desktop height remains aligned with navigation and the Contact Us action.
+- Colors and visual tokens: the original white chip, green TORVENT wordmark and dark-green hero palette are preserved.
+- Image quality and asset fidelity: the supplied raster wordmark is used directly with `object-fit: contain`; no stretching, replacement asset or code-drawn approximation is used.
+- Copy and content: the headline remains exactly “AI that works for your business.”
 
 ## Comparison history
 
-### Pass 1 — P2 fixed
+1. P2: global `scale(1.28)` enlarged and clipped the wordmark inside the chip. Fixed with explicit proportional dimensions and `transform: none`.
+2. P2: the route transition translated the fixed header 12px during entry. Fixed with an opacity-only transition.
+3. P3: the first proportional pass left the wordmark visually undersized. Increased the desktop and mobile wordmark dimensions while retaining balanced clearspace.
+4. Post-fix evidence: the focused 238 × 80 comparison shows the corrected centered lockup; desktop and mobile browser captures show no overflow.
 
-- Finding: at the 768px tablet viewport, the typewriter live layer retained desktop `white-space: nowrap`, so the headline clipped at the right edge even though the reserved layer wrapped.
-- Fix: both typewriter layers now share the same balanced wrapping and grid area below 1180px.
-- Post-fix evidence: the 768px screenshot shows a balanced two-line headline, matching live/reserved bounds, and no horizontal overflow.
+## Interaction and technical checks
 
-### Final pass
+- Continuous type → hold → erase → pause → repeat cycle verified.
+- Mobile layout verified at 375 × 812 with client width and scroll width both 360px.
+- Header navigation and mobile menu remain present and unchanged.
+- Production build, TypeScript, ESLint and rendered HTML tests passed.
+- No new browser-visible error state was observed during desktop or mobile verification.
 
-- No actionable P0, P1, or P2 visual issues remain.
-- No residual horizontal overflow was found at 320, 375, 430, 768, 1024, 1280, 1440, or 1920px.
-- The focused comparison confirms the requested switch from image-led cards to icon-led cards and the direct transition from AI Roles to Language Intelligence after section removal.
-
-## Primary interactions tested
-
-- Typewriter progresses from partial to complete text, has no cursor, remains static after completion, and does not replay on the same session visit.
-- Desktop Solutions dropdown opens by keyboard, exposes its links, and closes with Escape.
-- Mobile menu opens and contains one Contact Us CTA with no workflow CTA.
-- Industry selector changes to Healthcare and exposes the matching tab panel.
-- Browser console errors and warnings: none.
-- Production build, TypeScript, lint, and rendered HTML tests: passed.
-
-## Final result
-
-passed
+final result: passed

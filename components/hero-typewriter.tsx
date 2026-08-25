@@ -3,27 +3,45 @@
 import { useEffect, useState } from "react";
 
 const sentence = "AI that works for your business.";
-const visitKey = "torvent.hero-headline-seen";
 
 export function HeroTypewriter() {
   const [length, setLength] = useState(0);
 
   useEffect(() => {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const hasPlayed = window.sessionStorage.getItem(visitKey) === "true";
     let timer = 0;
+    let cancelled = false;
 
-    const reveal = (next: number) => {
+    if (reduceMotion) {
+      timer = window.setTimeout(() => setLength(sentence.length), 0);
+      return () => window.clearTimeout(timer);
+    }
+
+    const type = (next: number) => {
+      if (cancelled) return;
       setLength(next);
       if (next < sentence.length) {
-        timer = window.setTimeout(() => reveal(next + 1), 48);
-      } else {
-        window.sessionStorage.setItem(visitKey, "true");
+        timer = window.setTimeout(() => type(next + 1), 48);
+        return;
       }
+      timer = window.setTimeout(() => erase(sentence.length - 1), 1650);
     };
 
-    timer = window.setTimeout(() => reveal(reduceMotion || hasPlayed ? sentence.length : 1), reduceMotion || hasPlayed ? 0 : 260);
-    return () => window.clearTimeout(timer);
+    const erase = (next: number) => {
+      if (cancelled) return;
+      setLength(next);
+      if (next > 0) {
+        timer = window.setTimeout(() => erase(next - 1), 28);
+        return;
+      }
+      timer = window.setTimeout(() => type(1), 520);
+    };
+
+    timer = window.setTimeout(() => type(1), 260);
+    return () => {
+      cancelled = true;
+      window.clearTimeout(timer);
+    };
   }, []);
 
   return <span className="v2-typewriter" aria-label={sentence}>
