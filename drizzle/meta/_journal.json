@@ -1,5 +1,48 @@
 {
   "version": "7",
   "dialect": "sqlite",
-  "entries": []
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1788191273192,
+      "tag": "0000_boring_silk_fever",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1788191274192,
+      "tag": "0001_seed_twacha",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1788191275192,
+      "tag": "0002_seed_slot_claims",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1788191276192,
+      "tag": "0003_repair_queue_counters",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "6",
+      "when": 1788191277192,
+      "tag": "0004_clinical_commerce",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "6",
+      "when": 1788191278192,
+      "tag": "0005_patient_access",
+      "breakpoints": true
+    }
+  ]
 }

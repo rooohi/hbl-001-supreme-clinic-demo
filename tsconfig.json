@@ -38,6 +38,12 @@
   ],
   "exclude": [
     "node_modules",
+    "ai50",
+    "tmp",
+    "dist",
+    "out",
+    ".next",
+    ".vinext",
     "db",
     "examples",
     "app/chatgpt-auth.ts",

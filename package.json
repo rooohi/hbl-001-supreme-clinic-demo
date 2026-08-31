@@ -1,5 +1,5 @@
 {
-  "name": "torvent-website",
+  "name": "twacha-clinic-os",
   "version": "0.1.0",
   "private": true,
   "engines": {
@@ -7,19 +7,24 @@
   },
   "scripts": {
     "dev": "vinext dev",
-    "build": "next build",
+    "build": "vinext build",
     "start": "vinext start",
-    "test": "npm run build && node --test tests/rendered-html.test.mjs",
-    "lint": "eslint app components config",
+    "test": "npm run build && node --test tests/*.test.mjs",
+    "lint": "eslint app components features server types/clinic.ts types/cloudflare-workers.d.ts",
     "db:generate": "drizzle-kit generate",
-    "pages:build": "next build"
+    "pages:build": "vinext build"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.9.1",
     "@phosphor-icons/react": "^2.1.10",
+    "@tanstack/react-query": "^5.102.8",
     "drizzle-orm": "0.45.2",
+    "lucide-react": "^1.38.0",
     "next": "16.2.6",
     "react": "19.2.6",
-    "react-dom": "19.2.6"
+    "react-dom": "19.2.6",
+    "react-hook-form": "^7.87.0",
+    "zod": "^4.5.4"
   },
   "devDependencies": {
     "@cloudflare/vite-plugin": "1.37.1",
