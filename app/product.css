@@ -2362,3 +2362,80 @@
   .activation-gate { grid-template-columns: 30px minmax(0, 1fr); }
   .activation-gate > span { grid-column: 2; }
 }
+
+/* Fully actionable management and patient-record workflows */
+.row-actions a,
+.queue-empty-action {
+  min-height: 30px;
+  padding: 0 9px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: #fff;
+  color: #526c77;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 700;
+}
+.row-actions a { width: 30px; padding: 0; }
+.row-actions a svg,.queue-empty-action svg { width: 14px; }
+.call-next-card .queue-empty-action { width: 100%; min-height: 42px; background: var(--blue); color: #fff; border-color: var(--blue); }
+.doctor-chip,.top-avatar,.icon-button { text-decoration: none; }
+
+.management-dialog,.manual-message-dialog,.booking-info-dialog { width: min(720px,100%); background: #fff; border-radius: 16px; box-shadow: 0 30px 90px rgba(20,38,48,.25); overflow: hidden; }
+.management-dialog>header,.manual-message-dialog>header,.booking-info-dialog>header { min-height: 72px; padding: 14px 20px; border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.management-dialog>header h3,.manual-message-dialog>header h3,.booking-info-dialog>header h2 { margin: 3px 0 0; font-size: 20px; }
+.management-dialog>header button,.manual-message-dialog>header button,.booking-info-dialog>header button { width: 36px; height: 36px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 9px; background: #fff; color: #5d7078; }
+.management-dialog>header button svg,.manual-message-dialog>header button svg,.booking-info-dialog>header button svg { width: 16px; }
+.management-form { padding: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.management-form label { display: grid; gap: 6px; color: #53666f; font-size: 12px; font-weight: 700; }
+.management-form input,.management-form select,.management-form textarea,.manual-message-dialog textarea { width: 100%; border: 1px solid #d9e2e4; border-radius: 9px; background: #fff; color: #243c46; padding: 10px 11px; font: inherit; outline: none; }
+.management-form input,.management-form select { min-height: 42px; }
+.management-form input:focus,.management-form select:focus,.management-form textarea:focus,.manual-message-dialog textarea:focus { border-color: var(--teal); box-shadow: 0 0 0 3px rgba(60,140,136,.12); }
+.management-form .full { grid-column: 1/-1; }
+.management-form>footer { display: flex; justify-content: flex-end; gap: 9px; padding-top: 4px; }
+
+.manual-message-dialog { width: min(620px,100%); padding-bottom: 18px; }
+.manual-message-dialog>p,.manual-message-dialog>textarea,.manual-message-dialog>footer { margin-left: 20px; margin-right: 20px; }
+.manual-message-dialog>p { color: #5f7179; font-size: 13px; line-height: 1.6; }
+.manual-message-dialog>textarea { width: calc(100% - 40px); resize: vertical; }
+.manual-message-dialog>footer { margin-top: 14px; display: flex; justify-content: flex-end; gap: 9px; }
+
+.booking-info-backdrop { padding: 20px; }
+.booking-info-dialog { width: min(520px,100%); padding-bottom: 22px; }
+.booking-info-dialog>p,.booking-info-dialog>.primary-booking-button { margin-left: 22px; margin-right: 22px; }
+.booking-info-dialog>p { color: #5d717a; line-height: 1.65; }
+
+.profile-actions { grid-template-columns: repeat(3,1fr); }
+.profile-actions button.active { border-color: #89b9b2; background: #edf7f5; color: #2f6f68; }
+.patient-timeline { margin-top: 16px; display: grid; gap: 8px; }
+.patient-timeline>article { padding: 11px; border: 1px solid var(--line); border-radius: 9px; display: grid; grid-template-columns: 92px 1fr; gap: 10px; }
+.patient-timeline>article>span,.patient-timeline>article>div { min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.patient-timeline b { color: #314a54; font-size: 11px; }
+.patient-timeline small,.patient-timeline p { margin: 0; color: #74858d; font-size: 10px; line-height: 1.45; overflow-wrap: anywhere; }
+.patient-documents { margin-top: 16px; }
+.patient-documents>form { padding: 13px; border: 1px solid var(--line); border-radius: 10px; background: #f8fbfb; display: grid; gap: 10px; }
+.patient-documents>form label { display: grid; gap: 5px; color: #53666f; font-size: 11px; font-weight: 700; }
+.patient-documents input[type="file"] { width: 100%; padding: 9px; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
+.patient-documents .consent-check { grid-template-columns: 18px 1fr; align-items: start; font-weight: 500; line-height: 1.45; }
+.patient-documents .consent-check input { margin-top: 2px; }
+.document-list { margin-top: 12px; display: grid; gap: 7px; }
+.document-list article { min-height: 54px; padding: 8px 9px; border: 1px solid var(--line); border-radius: 9px; display: grid; grid-template-columns: 26px 1fr 30px 30px; align-items: center; gap: 7px; }
+.document-list article>svg { width: 17px; color: var(--teal); }
+.document-list article>span { min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+.document-list b { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 10px; }
+.document-list small { color: #7b8a91; font-size: 9px; }
+.document-list a,.document-list button { width: 30px; height: 30px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 7px; background: #fff; color: #58717a; }
+.document-list a svg,.document-list button svg { width: 13px; }
+
+@media (max-width:1100px) { .patient-preview { display: block; } }
+@media (max-width:700px) {
+  .management-form { grid-template-columns: 1fr; padding: 16px; }
+  .management-form .full { grid-column: 1; }
+  .profile-actions { grid-template-columns: 1fr; }
+  .patient-timeline>article { grid-template-columns: 1fr; }
+  .manual-message-dialog>footer { flex-direction: column; }
+  .manual-message-dialog>footer>* { width: 100%; justify-content: center; }
+}

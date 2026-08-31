@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import Link from "next/link";
 import { Activity, CheckCircle2, Clock3, Forward, LoaderCircle, Megaphone, Play, RefreshCw, RotateCcw, SkipForward, TriangleAlert, UserRoundCheck, Users, XCircle } from "lucide-react";
 import { apiJson, type QueueEntry } from "@/types/clinic";
 
@@ -60,7 +61,7 @@ export function QueueView() {
       <aside className="queue-control-rail">
         <section className="panel call-next-card">
           <p className="eyebrow">ONE-CLICK ACTION</p><h3>{next ? `Call T-${next.tokenNumber}` : "Queue is clear"}</h3><p>{next ? `${next.patientName} · ${next.serviceName}` : "The next checked-in patient will appear here."}</p>
-          <button type="button" disabled={!next || action.isPending} onClick={() => next && action.mutate({ entry: next, action: next.status === "CALLED" ? "START" : "CALL" })}>{action.isPending ? <LoaderCircle className="spin" /> : next?.status === "CALLED" ? <Play /> : <Megaphone />}{next?.status === "CALLED" ? "Start consultation" : "Call next patient"}</button>
+          {next ? <button type="button" disabled={action.isPending} onClick={() => action.mutate({ entry: next, action: next.status === "CALLED" ? "START" : "CALL" })}>{action.isPending ? <LoaderCircle className="spin" /> : next.status === "CALLED" ? <Play /> : <Megaphone />}{next.status === "CALLED" ? "Start consultation" : "Call next patient"}</button> : <Link className="queue-empty-action" href="/appointments?new=1"><Users />Add or check in patient</Link>}
         </section>
         <section className="panel queue-policy-card"><h3>Queue estimate</h3><div><Clock3 /><span><b>Deterministic, not AI</b><small>Uses service duration, current consultation and queue order.</small></span></div><div><UserRoundCheck /><span><b>Patient-safe view</b><small>Public tracking exposes tokens and timing, never names.</small></span></div></section>
       </aside>

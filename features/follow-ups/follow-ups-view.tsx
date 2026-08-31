@@ -7,10 +7,13 @@ import {
   CalendarPlus,
   CheckCircle2,
   Clock3,
+  Copy,
+  ExternalLink,
   MessageCircle,
   RefreshCw,
   RotateCcw,
   TriangleAlert,
+  X,
 } from "lucide-react";
 import { AppointmentForm } from "@/features/appointments/appointment-form";
 import { apiJson, type FollowUp } from "@/types/clinic";
@@ -20,6 +23,7 @@ type FollowUpAction = "COMPLETE" | "DISMISS" | "BOOK";
 export function FollowUpsView() {
   const client = useQueryClient();
   const [booking, setBooking] = useState<FollowUp | null>(null);
+  const [messageTarget, setMessageTarget] = useState<FollowUp | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
   const query = useQuery({
     queryKey: ["follow-ups"],
@@ -80,7 +84,7 @@ export function FollowUpsView() {
                   <div><b>{item.patientName}</b><small>{item.patientNumber} · •••• {item.phoneLast4}</small><p>{item.note}</p></div>
                   <time>{new Intl.DateTimeFormat("en-IN", { day: "numeric", month: "short", timeZone: "Asia/Kolkata" }).format(new Date(`${item.dueDate}T12:00:00+05:30`))}</time>
                   <div className="followup-actions">
-                    <button type="button" disabled title="Messaging provider is not configured"><MessageCircle /></button>
+                    <button type="button" onClick={() => setMessageTarget(item)} aria-label={`Prepare follow-up message for ${item.patientName}`} title="Prepare manual WhatsApp message"><MessageCircle /></button>
                     {!(["BOOKED", "COMPLETED"] as string[]).includes(item.status) && <button type="button" onClick={() => setBooking(item)}><CalendarPlus />Rebook</button>}
                     <button type="button" onClick={() => mutation.mutate({ id: item.id, action: "COMPLETE" })}><CheckCircle2 />Complete</button>
                   </div>
@@ -114,6 +118,18 @@ export function FollowUpsView() {
           </section>
         </div>
       )}
+      {messageTarget && (() => {
+        const text = `Hello ${messageTarget.patientName}, this is Twacha Clinic. Your recommended follow-up is due ${new Intl.DateTimeFormat("en-IN", { dateStyle: "medium", timeZone: "Asia/Kolkata" }).format(new Date(`${messageTarget.dueDate}T12:00:00+05:30`))}. Please reply or call the clinic to choose a suitable appointment time.`;
+        const whatsapp = messageTarget.phone ? `https://wa.me/${messageTarget.phone.replace(/\D/g, "")}?text=${encodeURIComponent(text)}` : null;
+        return <div className="modal-backdrop appointment-modal">
+          <section role="dialog" aria-modal="true" aria-label={`Message ${messageTarget.patientName}`} className="manual-message-dialog">
+            <header><div><p className="eyebrow">MANUAL FOLLOW-UP</p><h3>Message {messageTarget.patientName}</h3></div><button type="button" aria-label="Close message" onClick={() => setMessageTarget(null)}><X /></button></header>
+            <p>Automated delivery is not configured. Review this patient-specific draft, then copy it or continue to WhatsApp yourself.</p>
+            <textarea rows={6} readOnly value={text} aria-label="Prepared follow-up message" />
+            <footer><button type="button" className="secondary-button" onClick={async () => { await navigator.clipboard.writeText(text); setNotice(`Message for ${messageTarget.patientName} copied.`); }}><Copy />Copy message</button>{whatsapp ? <a className="primary-button" href={whatsapp} target="_blank" rel="noreferrer"><ExternalLink />Open WhatsApp</a> : <button type="button" className="primary-button" onClick={() => setNotice("This patient record does not contain a callable mobile number.")}><MessageCircle />Check contact</button>}</footer>
+          </section>
+        </div>;
+      })()}
     </div>
   );
 }

@@ -33,7 +33,10 @@ export async function requireStaff(request: Request, permission: string): Promis
   const isDevelopment = process.env.NODE_ENV !== "production";
 
   if (isDevelopment && !email) {
-    const role: StaffRole = requestedDevRole && requestedDevRole in STAFF_PERMISSIONS ? requestedDevRole : "doctor";
+    // Local product evaluation defaults to the owner role so every implemented
+    // administrative workflow can be exercised. Role-specific behavior remains
+    // testable with the bounded x-twacha-dev-role development header.
+    const role: StaffRole = requestedDevRole && requestedDevRole in STAFF_PERMISSIONS ? requestedDevRole : "owner";
     const grants = STAFF_PERMISSIONS[role];
     if (!grants.has("*") && !grants.has(permission)) {
       throw Response.json({ error: "Insufficient permission", code: "FORBIDDEN" }, { status: 403 });

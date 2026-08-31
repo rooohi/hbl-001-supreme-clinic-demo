@@ -119,7 +119,7 @@ export function ClinicShell({ children, title, eyebrow }: { children: React.Reac
         </nav>
         <div className="sidebar-bottom">
           <Link href="/book" className="booking-link"><HeartPulse /><span>Patient booking</span></Link>
-          <div className="doctor-chip"><span>SD</span><div><b>Dr. Suman</b><small>Dermatologist</small></div><ChevronRight /></div>
+          <Link href="/team" className="doctor-chip" aria-label="Open team and profile"><span>SD</span><div><b>Dr. Suman</b><small>Dermatologist</small></div><ChevronRight /></Link>
         </div>
       </aside>
 
@@ -129,9 +129,9 @@ export function ClinicShell({ children, title, eyebrow }: { children: React.Reac
           <div className="page-context"><div className="page-icon"><PageIcon /></div><div><p>{eyebrow ?? active.label}</p><h1>{title ?? active.label}</h1></div></div>
           <div className="top-actions">
             <button className="search" type="button" onClick={openPalette} aria-haspopup="dialog" aria-expanded={paletteOpen} aria-controls="patient-search-dialog"><Search /><span>Search patients</span><kbd>Ctrl K</kbd></button>
-            <button className="icon-button" type="button" aria-label="Notifications are not configured" disabled title="Notifications are not configured"><Bell /><span /></button>
+            <Link className="icon-button" href="/action-center" aria-label="Open operational notifications" title="Open action center"><Bell /><span /></Link>
             <Link className="primary-button" href="/appointments?new=1"><Plus />New appointment</Link>
-            <div className="top-avatar" title="Dr. Suman"><CircleUserRound /></div>
+            <Link className="top-avatar" href="/team" aria-label="Open team and profile" title="Dr. Suman"><CircleUserRound /></Link>
           </div>
         </header>
         {children}

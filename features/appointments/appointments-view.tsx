@@ -3,7 +3,8 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { ArrowLeft, ArrowRight, CalendarDays, CheckCircle2, Filter, LayoutGrid, List, Plus, RefreshCw, Search, TriangleAlert, Users, X } from "lucide-react";
-import { useSearchParams } from "next/navigation";
+import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
 import { AppointmentForm } from "./appointment-form";
 import { apiJson, type Appointment } from "@/types/clinic";
 
@@ -18,12 +19,14 @@ function prettyStatus(status: string) { return status.toLowerCase().replaceAll("
 
 export function AppointmentsView() {
   const client = useQueryClient();
+  const router = useRouter();
   const searchParams = useSearchParams();
   const [date, setDate] = useState(indiaDate());
   const [view, setView] = useState<ViewMode>("day");
   const [search, setSearch] = useState("");
   const [status, setStatus] = useState("ALL");
   const [formOpen, setFormOpen] = useState(searchParams.get("new") === "1");
+  const isFormOpen = formOpen || searchParams.get("new") === "1";
   const [notice, setNotice] = useState<string | null>(null);
   const dialogRef = useRef<HTMLElement>(null);
   const restoreFocusRef = useRef<HTMLElement | null>(null);
@@ -53,11 +56,12 @@ export function AppointmentsView() {
 
   const closeForm = useCallback(() => {
     setFormOpen(false);
+    if (searchParams.get("new") === "1") router.replace("/appointments");
     window.requestAnimationFrame(() => restoreFocusRef.current?.focus());
-  }, []);
+  }, [router, searchParams]);
 
   useEffect(() => {
-    if (!formOpen) return;
+    if (!isFormOpen) return;
     const dialog = dialogRef.current;
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
@@ -92,7 +96,7 @@ export function AppointmentsView() {
       window.removeEventListener("keydown", handleKey);
       document.body.style.overflow = previousOverflow;
     };
-  }, [closeForm, formOpen]);
+  }, [closeForm, isFormOpen]);
 
   return <div className="page-stack">
     <section className="page-heading"><div><p>Schedule</p><h2>Appointments</h2><span>Conflict-aware scheduling for Dr. Suman’s clinic day.</span></div><button className="primary-button" type="button" onClick={(event) => openForm(event.currentTarget)} aria-haspopup="dialog"><Plus />New appointment</button></section>
@@ -116,10 +120,10 @@ export function AppointmentsView() {
         <div className="worklist-person"><span className="avatar">{appointment.patientName.split(" ").map((word) => word[0]).join("").slice(0,2)}</span><div><b>{appointment.patientName}</b><small>{appointment.patientNumber} · •••• {appointment.phoneLast4}</small></div></div>
         <div className="worklist-service"><b>{appointment.serviceName}</b><small>{prettyStatus(appointment.type)} · {prettyStatus(appointment.source)}</small></div>
         <span className={`status status-${appointment.status.toLowerCase()}`}>{prettyStatus(appointment.status)}</span>
-        <div className="row-actions">{["CONFIRMED","ARRIVED","SCHEDULED"].includes(appointment.status) && <button type="button" onClick={() => checkIn.mutate(appointment.id)} disabled={checkIn.isPending}><Users />Check in</button>}<button type="button" aria-label={`Patient details for ${appointment.patientName} are unavailable in this preview`} disabled title="Patient detail workspace is not enabled"><ArrowRight /></button></div>
+        <div className="row-actions">{["CONFIRMED","ARRIVED","SCHEDULED"].includes(appointment.status) && <button type="button" onClick={() => checkIn.mutate(appointment.id)} disabled={checkIn.isPending}><Users />Check in</button>}<Link href={`/patients?selected=${appointment.patientId}`} aria-label={`Open patient record for ${appointment.patientName}`} title="Open patient record"><ArrowRight /></Link></div>
       </article>)}
       {appointments.length === 0 && <div className="empty-state"><CalendarDays /><h3>No matching appointments</h3><p>Change the filters or create a new booking for this date.</p><button type="button" onClick={(event) => openForm(event.currentTarget)}><Plus />Create appointment</button></div>}
     </section>}
-    {formOpen && <div className="modal-backdrop appointment-modal"><section ref={dialogRef} role="dialog" aria-modal="true" aria-label="Create appointment" tabIndex={-1}><AppointmentForm onClose={closeForm} onCreated={(result) => { closeForm(); setNotice(`Appointment confirmed for ${formatTime(result.scheduledAt)}.`); client.invalidateQueries({ queryKey: ["appointments"] }); client.invalidateQueries({ queryKey: ["dashboard"] }); }} /></section></div>}
+    {isFormOpen && <div className="modal-backdrop appointment-modal"><section ref={dialogRef} role="dialog" aria-modal="true" aria-label="Create appointment" tabIndex={-1}><AppointmentForm onClose={closeForm} onCreated={(result) => { closeForm(); setNotice(`Appointment confirmed for ${formatTime(result.scheduledAt)}.`); client.invalidateQueries({ queryKey: ["appointments"] }); client.invalidateQueries({ queryKey: ["dashboard"] }); }} /></section></div>}
   </div>;
 }

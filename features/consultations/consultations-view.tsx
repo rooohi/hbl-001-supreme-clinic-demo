@@ -103,6 +103,7 @@ function ConsultationWorkspace({ selected, onSaved }: { selected: Consultation; 
   const [clinicalNote, setClinicalNote] = useState(selected.clinicalNote ?? "");
   const [followUpPlan, setFollowUpPlan] = useState(selected.followUpPlan ?? "");
   const [medications, setMedications] = useState<Medication[]>(selected.medications.length ? selected.medications : [blankMedication()]);
+  const [validation, setValidation] = useState<string | null>(null);
   const save = useMutation({
     mutationFn: (action: "SAVE_DRAFT" | "SIGN" | "AMEND") => apiJson<{ consultationStatus: string; prescriptionStatus: string }>("/api/consultations", {
       method: "POST",
@@ -119,11 +120,25 @@ function ConsultationWorkspace({ selected, onSaved }: { selected: Consultation; 
   });
 
   const confirmFinal = () => {
+    if (!clinicalNote.trim()) {
+      setValidation("Add the visit note before reviewing and signing this record.");
+      return;
+    }
+    setValidation(null);
     const action = selected.consultationStatus === "SIGNED" ? "AMEND" : "SIGN";
     const message = action === "SIGN"
       ? "Sign this clinical note and finalize its prescription? Review every field first."
       : "Create an amended clinical record? The prior signed state remains in the audit trail.";
     if (window.confirm(message)) save.mutate(action);
+  };
+
+  const saveDraft = () => {
+    if (!clinicalNote.trim()) {
+      setValidation("Add the visit note before saving a draft.");
+      return;
+    }
+    setValidation(null);
+    save.mutate("SAVE_DRAFT");
   };
 
   const updateMedication = (index: number, field: keyof Medication, value: string | number | null) => {
@@ -161,11 +176,12 @@ function ConsultationWorkspace({ selected, onSaved }: { selected: Consultation; 
             </fieldset>)}
           </section>
 
+          {validation && <div className="error-banner"><TriangleAlert />{validation}</div>}
           {save.isError && <div className="error-banner"><TriangleAlert />{save.error.message}</div>}
           {save.isSuccess && <div className="success-banner"><Check />Clinical record saved with an audit event.</div>}
           <footer className="encounter-actions">
-            <button type="button" className="secondary-button" disabled={save.isPending || !clinicalNote.trim() || selected.consultationStatus === "SIGNED"} onClick={() => save.mutate("SAVE_DRAFT")}><ClipboardPlus />Save draft</button>
-            <button type="button" className="primary-button" disabled={save.isPending || !clinicalNote.trim()} onClick={confirmFinal}>{save.isPending ? <LoaderCircle className="spin" /> : <FileSignature />}{selected.consultationStatus === "SIGNED" ? "Amend signed record" : "Review and sign"}</button>
+            {selected.consultationStatus !== "SIGNED" && <button type="button" className="secondary-button" disabled={save.isPending} onClick={saveDraft}><ClipboardPlus />Save draft</button>}
+            <button type="button" className="primary-button" disabled={save.isPending} onClick={confirmFinal}>{save.isPending ? <LoaderCircle className="spin" /> : <FileSignature />}{selected.consultationStatus === "SIGNED" ? "Amend signed record" : "Review and sign"}</button>
           </footer>
         </div>;
 }
