@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { ArrowLeft, ArrowRight, CalendarDays, CheckCircle2, Filter, LayoutGrid, List, Plus, RefreshCw, Search, TriangleAlert, Users, X } from "lucide-react";
-import Link from "next/link";
+import Link from "@/components/native-link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { AppointmentForm } from "./appointment-form";
 import { apiJson, type Appointment } from "@/types/clinic";

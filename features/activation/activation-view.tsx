@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/components/native-link";
 import { useQuery } from "@tanstack/react-query";
 import { ArrowRight, Check, CircleDashed, LoaderCircle, LockKeyhole, Rocket, ShieldCheck, TriangleAlert } from "lucide-react";
 import { apiJson } from "@/types/clinic";

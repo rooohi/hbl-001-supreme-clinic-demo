@@ -2,7 +2,7 @@
 
 import { ChangeEvent, FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import { ArrowLeft, CalendarCheck, CheckCircle, DownloadSimple, Funnel, MagnifyingGlass, Plus, UploadSimple, WhatsappLogo } from "@phosphor-icons/react";
-import Link from "next/link";
+import Link from "@/components/native-link";
 
 const storageKey="torvent.crm.v1";
 const legacyStorageKey="aiautomationhubballi.crm.v1";

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/native-link";
 import { ArrowLeft, KeyRound, ShieldCheck, UserRoundCheck } from "lucide-react";
 
 export default async function LoginPage({ searchParams }: { searchParams: Promise<{ reason?: string }> }) {

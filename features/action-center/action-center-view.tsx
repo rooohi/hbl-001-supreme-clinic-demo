@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/components/native-link";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import {
   ArrowRight, BadgeIndianRupee, BrainCircuit, Boxes, CalendarClock, CheckCircle2,

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import Link from "next/link";
+import Link from "@/components/native-link";
 import { Activity, CheckCircle2, Clock3, Forward, LoaderCircle, Megaphone, Play, RefreshCw, RotateCcw, SkipForward, TriangleAlert, UserRoundCheck, Users, XCircle } from "lucide-react";
 import { apiJson, type QueueEntry } from "@/types/clinic";
 

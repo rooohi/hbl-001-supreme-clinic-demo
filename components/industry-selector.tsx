@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/components/native-link";
 import { useState } from "react";
 import { ArrowRight, Buildings, Factory, GraduationCap, Heartbeat, Storefront } from "@phosphor-icons/react";
 

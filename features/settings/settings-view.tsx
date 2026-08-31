@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/components/native-link";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import {

@@ -1,5 +1,5 @@
 import { ArrowRight, MapPin, ShieldCheck } from "@phosphor-icons/react/dist/ssr";
-import Link from "next/link";
+import Link from "@/components/native-link";
 import Image from "next/image";
 import { company } from "@/config/company";
 import { SiteHeader } from "@/components/site-header-client";

@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/components/native-link";
 import { useQuery } from "@tanstack/react-query";
 import {
   Activity, ArrowRight, CalendarDays, CheckCircle2, Clock3, RefreshCw,

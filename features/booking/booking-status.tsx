@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/native-link";
 import { useQuery } from "@tanstack/react-query";
 import { Activity, ArrowLeft, CalendarCheck, Clock3, RefreshCw, ShieldCheck, Stethoscope, TicketCheck, TriangleAlert, Users } from "lucide-react";
 import { apiJson } from "@/types/clinic";

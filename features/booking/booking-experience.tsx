@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/native-link";
 import { useState } from "react";
 import { ArrowRight, CalendarCheck, CheckCircle2, Clock3, ExternalLink, HeartPulse, MapPin, Phone, ShieldCheck, Stethoscope, X } from "lucide-react";
 import { AppointmentForm } from "@/features/appointments/appointment-form";
