@@ -27,16 +27,21 @@ export type StaffContext = {
   role: StaffRole;
 };
 
+export function isPublicDemoMode() {
+  return process.env.TWACHA_PUBLIC_DEMO_MODE === "true";
+}
+
 export async function requireStaff(request: Request, permission: string): Promise<StaffContext> {
   const email = request.headers.get("oai-authenticated-user-email");
   const requestedDevRole = request.headers.get("x-twacha-dev-role") as StaffRole | null;
   const isDevelopment = process.env.NODE_ENV !== "production";
+  const isPublicDemo = isPublicDemoMode();
 
-  if (isDevelopment && !email) {
+  if ((isDevelopment || isPublicDemo) && !email) {
     // Local product evaluation defaults to the owner role so every implemented
     // administrative workflow can be exercised. Role-specific behavior remains
     // testable with the bounded x-twacha-dev-role development header.
-    const role: StaffRole = requestedDevRole && requestedDevRole in STAFF_PERMISSIONS ? requestedDevRole : "owner";
+    const role: StaffRole = isDevelopment && requestedDevRole && requestedDevRole in STAFF_PERMISSIONS ? requestedDevRole : "owner";
     const grants = STAFF_PERMISSIONS[role];
     if (!grants.has("*") && !grants.has(permission)) {
       throw Response.json({ error: "Insufficient permission", code: "FORBIDDEN" }, { status: 403 });
@@ -45,8 +50,8 @@ export async function requireStaff(request: Request, permission: string): Promis
       tenantId: TWACHA_TENANT_ID,
       locationId: TWACHA_LOCATION_ID,
       staffId: role === "receptionist" ? "33333333-3333-4333-8333-333333333332" : TWACHA_PROVIDER_ID,
-      email: `${role}@twacha.local`,
-      displayName: role === "receptionist" ? "Kavya Shetty" : role === "owner" ? "Twacha Clinic Owner" : "Dr. Suman Odugoudar Dibbad",
+      email: isPublicDemo ? "public-demo@twacha.local" : `${role}@twacha.local`,
+      displayName: isPublicDemo ? "Public Demo Operator" : role === "receptionist" ? "Kavya Shetty" : role === "owner" ? "Twacha Clinic Owner" : "Dr. Suman Odugoudar Dibbad",
       role,
     };
   }

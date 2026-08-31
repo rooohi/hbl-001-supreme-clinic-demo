@@ -5,7 +5,7 @@ import { useForm, useWatch } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { CalendarDays, CheckCircle2, Clock3, LoaderCircle, Phone, UserRound, X } from "lucide-react";
+import { CalendarDays, CheckCircle2, Clock3, LoaderCircle, Phone, TriangleAlert, UserRound, X } from "lucide-react";
 import { apiJson, type ClinicService } from "@/types/clinic";
 
 const formSchema = z.object({
@@ -53,6 +53,9 @@ export function AppointmentForm({ publicMode = false, initialValues, onClose, on
     enabled: Boolean(serviceId && date),
   });
   const selectedService = useMemo(() => serviceData?.services.find((service) => service.id === serviceId), [serviceData, serviceId]);
+  const validationMessages = Object.values(form.formState.errors)
+    .map((error) => error?.message)
+    .filter((message): message is string => Boolean(message));
 
   useEffect(() => { form.setValue("time", ""); }, [date, serviceId, form]);
 
@@ -77,6 +80,7 @@ export function AppointmentForm({ publicMode = false, initialValues, onClose, on
       <section className="form-section"><div className="form-section-title"><span>2</span><div><b>Date and time</b><small>Only conflict-free slots are shown</small></div></div>
         <label><span>Date</span><div className="input-with-icon"><CalendarDays /><input type="date" min={todayInIndia()} {...form.register("date")} /></div>{form.formState.errors.date && <em role="alert">{form.formState.errors.date.message}</em>}</label>
         <div className="slot-field"><span>Available time</span>
+          {!serviceId && <div className="slot-prompt"><Clock3 /><span><b>Select a service first</b><small>Available appointment times will appear here.</small></span></div>}
           {availability.isFetching && <div className="slot-loading"><LoaderCircle className="spin" />Calculating availability…</div>}
           {availability.isError && <div className="inline-error">{availability.error.message}</div>}
           {availability.data?.closed && <div className="inline-empty">Clinic is closed on Sundays. Choose another date.</div>}
@@ -93,6 +97,7 @@ export function AppointmentForm({ publicMode = false, initialValues, onClose, on
         <label className="full"><span>Reason for visit <small>Optional</small></span><textarea rows={3} placeholder="A short note for the clinic" {...form.register("reason")} />{form.formState.errors.reason && <em role="alert">{form.formState.errors.reason.message}</em>}</label>
       </section>
       {publicMode && <p className="consent-copy">By confirming, you consent to Twacha Clinic using these details to manage this appointment and related care communications. You can request correction or deletion subject to applicable retention duties.</p>}
+      {form.formState.isSubmitted && validationMessages.length > 0 && <div className="form-validation-summary" role="alert"><TriangleAlert /><span><b>Please complete the highlighted fields.</b><small>{validationMessages.join(" · ")}</small></span></div>}
       {mutation.isError && <div className="form-error" role="alert">{mutation.error.message}</div>}
     </div>
     <footer>{onClose && <button className="secondary-button" type="button" onClick={onClose}>Cancel</button>}<button className="primary-button submit-button" type="submit" disabled={mutation.isPending}>{mutation.isPending ? <><LoaderCircle className="spin" />Confirming…</> : publicMode ? "Confirm appointment" : "Create appointment"}</button></footer>

@@ -7,7 +7,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import {
   Activity, BarChart3, Bell, CalendarDays, CheckCircle2, ChevronRight, CircleUserRound,
   ClipboardList, HeartPulse, Home, ListChecks, Mail, Menu, PackageSearch, Plus, ReceiptIndianRupee,
-  Search, Settings, Stethoscope, Users, UserRoundCog, X,
+  Search, Settings, Stethoscope, TriangleAlert, Users, UserRoundCog, X,
 } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { apiJson } from "@/types/clinic";
@@ -33,7 +33,7 @@ type PatientSearchResult = {
   patients: Array<{ id: string; patientNumber: string; displayName: string; phoneLast4: string; visitCount: number }>;
 };
 
-export function ClinicShell({ children, title, eyebrow }: { children: React.ReactNode; title?: string; eyebrow?: string }) {
+export function ClinicShell({ children, title, eyebrow, demoMode = false }: { children: React.ReactNode; title?: string; eyebrow?: string; demoMode?: boolean }) {
   const pathname = usePathname();
   const [paletteOpen, setPaletteOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -134,6 +134,7 @@ export function ClinicShell({ children, title, eyebrow }: { children: React.Reac
             <Link className="top-avatar" href="/team" aria-label="Open team and profile" title="Dr. Suman"><CircleUserRound /></Link>
           </div>
         </header>
+        {demoMode && <aside className="public-demo-banner"><TriangleAlert /><div><b>Public demo workspace</b><span>Use fictional test data only. Changes are shared with every demo visitor and may be reset.</span></div><Link href="/book">Open patient booking</Link></aside>}
         {children}
       </main>
 
